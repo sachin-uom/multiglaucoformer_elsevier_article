@@ -234,65 +234,65 @@ A compact comparison of representative studies is provided in Table~\ref{tab:com
     \resizebox{\textwidth}{!}{%
         \begin{tabular}{p{0.13\textwidth} p{0.16\textwidth} p{0.24\textwidth} p{0.20\textwidth} p{0.23\textwidth}}
             \hline
-            \textbf{Study} &
-            \textbf{Modality / Dataset} &
-            \textbf{Main approach} &
-            \textbf{Task} &
-            \textbf{Main limitation relevant to this work} \\
+            \textbf{Study}                                                                              &
+            \textbf{Modality / Dataset}                                                                 &
+            \textbf{Main approach}                                                                      &
+            \textbf{Task}                                                                               &
+            \textbf{Main limitation relevant to this work}                                                                                      \\
             \hline
 
-            \cite{orlando2020refuge} &
-            Fundus / REFUGE &
+            \cite{orlando2020refuge}                                                                    &
+            Fundus / REFUGE                                                                             &
             Standardized benchmark with optic disc/cup segmentation and glaucoma classification methods &
-            Fundus-based glaucoma assessment &
-            Fundus-only benchmark; does not use OCT information \\
+            Fundus-based glaucoma assessment                                                            &
+            Fundus-only benchmark; does not use OCT information                                                                                 \\
 
-            \cite{shyamalee2022glaucoma,diaz2019cnns,shyamalee2022cnn} &
-            Fundus / RIM-ONE, ACRIMA and related datasets &
-            Segmentation-guided and transfer-learning-based CNN pipelines &
-            Glaucoma screening / classification &
-            Fundus-only analysis; limited use of depth-resolved retinal structure \\
+            \cite{shyamalee2022glaucoma,diaz2019cnns,shyamalee2022cnn}                                  &
+            Fundus / RIM-ONE, ACRIMA and related datasets                                               &
+            Segmentation-guided and transfer-learning-based CNN pipelines                               &
+            Glaucoma screening / classification                                                         &
+            Fundus-only analysis; limited use of depth-resolved retinal structure                                                               \\
 
-            \cite{asaoka2019using,thompson2020assessment} &
-            OCT-based datasets &
-            Transfer learning on OCT maps and segmentation-free CNN analysis of OCT B-scans &
-            OCT-based glaucoma detection &
-            OCT-only analysis; does not exploit fundus contextual information \\
+            \cite{asaoka2019using,thompson2020assessment}                                               &
+            OCT-based datasets                                                                          &
+            Transfer learning on OCT maps and segmentation-free CNN analysis of OCT B-scans             &
+            OCT-based glaucoma detection                                                                &
+            OCT-only analysis; does not exploit fundus contextual information                                                                   \\
 
-            \cite{mehta2021automated} &
-            Fundus, OCT, and clinical variables &
-            Modality-specific modelling with decision-level fusion &
-            Automated glaucoma detection &
-            Uses multiple information sources, but does not provide controlled comparison of fusion depths \\
+            \cite{mehta2021automated}                                                                   &
+            Fundus, OCT, and clinical variables                                                         &
+            Modality-specific modelling with decision-level fusion                                      &
+            Automated glaucoma detection                                                                &
+            Uses multiple information sources, but does not provide controlled comparison of fusion depths                                      \\
 
-            \cite{luo2023harvard,hwang2025utilization,lim2022use} &
-            OCT, visual field, fundus, and/or clinical information &
-            Multimodal learning for glaucoma detection or progression-related assessment &
-            Detection / progression analysis &
-            Different modality combinations and objectives; not focused on paired fundus--OCT fusion-depth comparison \\
+            \cite{luo2023harvard,hwang2025utilization,lim2022use}                                       &
+            OCT, visual field, fundus, and/or clinical information                                      &
+            Multimodal learning for glaucoma detection or progression-related assessment                &
+            Detection / progression analysis                                                            &
+            Different modality combinations and objectives; not focused on paired fundus--OCT fusion-depth comparison                           \\
 
-            \cite{wu2023gamma} &
-            Fundus and 3D OCT / GAMMA &
-            Multimodal glaucoma grading benchmark with paired fundus and OCT data &
-            Three-class glaucoma grading &
-            Primarily grading-focused; challenge methods generally use fixed fusion formulations \\
+            \cite{wu2023gamma}                                                                          &
+            Fundus and 3D OCT / GAMMA                                                                   &
+            Multimodal glaucoma grading benchmark with paired fundus and OCT data                       &
+            Three-class glaucoma grading                                                                &
+            Primarily grading-focused; challenge methods generally use fixed fusion formulations                                                \\
 
-            \cite{wang2024geometric} &
-            Fundus and OCT / ophthalmic multimodal datasets &
-            Geometric correspondence-based multimodal learning for fundus--OCT fusion &
-            Ophthalmic image analysis including glaucoma &
-            Emphasizes geometric correspondence, but does not compare early, deep, and late fusion under one protocol \\
+            \cite{wang2024geometric}                                                                    &
+            Fundus and OCT / ophthalmic multimodal datasets                                             &
+            Geometric correspondence-based multimodal learning for fundus--OCT fusion                   &
+            Ophthalmic image analysis including glaucoma                                                &
+            Emphasizes geometric correspondence, but does not compare early, deep, and late fusion under one protocol                           \\
 
-            \cite{cai2022corolla,zhao2025enhancing} &
-            Fundus and OCT / GAMMA &
-            Task-specific multimodal fusion frameworks for glaucoma grading &
-            Three-class glaucoma grading &
-            Strong task-specific designs, but mainly grading-focused and based on fixed fusion strategies \\
+            \cite{cai2022corolla,zhao2025enhancing}                                                     &
+            Fundus and OCT / GAMMA                                                                      &
+            Task-specific multimodal fusion frameworks for glaucoma grading                             &
+            Three-class glaucoma grading                                                                &
+            Strong task-specific designs, but mainly grading-focused and based on fixed fusion strategies                                       \\
 
-            \textbf{This study} &
-            Fundus and 3D OCT / GAMMA &
-            Transformer-based Early, Deep, and Late Fusion with OCT multiple-instance learning &
-            Binary screening and three-class grading &
+            \textbf{This study}                                                                         &
+            Fundus and 3D OCT / GAMMA                                                                   &
+            Transformer-based Early, Deep, and Late Fusion with OCT multiple-instance learning          &
+            Binary screening and three-class grading                                                    &
             Systematically evaluates fusion depth under a unified preprocessing, training, robustness, calibration, and explainability protocol \\
             \hline
         \end{tabular}
@@ -301,808 +301,645 @@ A compact comparison of representative studies is provided in Table~\ref{tab:com
 
 Overall, prior work reveals four important gaps. First, many glaucoma AI studies rely on either fundus photographs or OCT images alone, which may underuse complementary retinal information. Second, existing multimodal glaucoma studies commonly adopt a fixed fusion design, limiting insight into how the timing of multimodal interaction affects diagnostic behaviour. Third, most GAMMA-based studies focus primarily on multiclass grading, whereas potential clinical use also requires referral-oriented binary screening. Fourth, paired fundus--OCT datasets remain relatively small, making data-efficient volumetric OCT representation and robust evaluation important. These limitations motivate the present study, which systematically evaluates transformer-based Early, Deep, and Late Fusion strategies for both glaucoma screening and grading using paired fundus and OCT images.
 
-\section{METHODOLOGY}
-\label{sec3}
-This study addresses two clinically related tasks—binary glaucoma screening and multiclass glaucoma grading—within a unified multimodal learning framework. While screening focuses on detecting glaucomatous pathology, grading targets ordinal severity discrimination. Instead of treating these as separate problems, the proposed transformer-based architecture supports task-specific adaptations in loss design, calibration, and evaluation while preserving identical feature extractors and fusion mechanisms.
+\section{Materials and Methods}
+\label{sec:materials_methods}
 
+This study addresses two clinically related diagnostic tasks within a unified multimodal learning framework: binary glaucoma screening and three-class glaucoma severity grading. Binary screening focuses on distinguishing glaucomatous from non-glaucomatous eyes, whereas grading aims to differentiate normal, early-glaucoma, and mid-advanced-glaucoma cases. The same general preprocessing, modality encoding, and fusion principles are retained across both tasks, while task-specific adaptations are introduced in the loss functions, class-imbalance handling, model calibration, and evaluation criteria.
 
-\subsection{OVERALL WORKFLOW}
-\label{subsec31}
+\subsection{Study Design and Overall Framework}
+\label{subsec:study_design}
 
-The proposed transformer-based multimodal framework for glaucoma screening and grading follows a structured end-to-end workflow, illustrated in Figure~\ref{fig:overall-workflow}. The framework supports two diagnostic objectives—binary glaucoma screening and multiclass glaucoma grading—within a unified architectural and training pipeline. It includes stages for multimodal preprocessing, task-specific dataset preparation, class balancing, fusion model initialization, supervised training, calibration, and inference with explainability analysis.
+The proposed framework integrates paired color fundus photographs and three-dimensional OCT volumes for automated glaucoma screening and severity grading. As illustrated in Figure~\ref{fig:overall-workflow}, the complete workflow consists of multimodal image preprocessing, task-specific label preparation, OCT B-scan selection, transformer-based multimodal fusion, supervised model training, hyperparameter optimization, post-hoc calibration, test-set inference, statistical evaluation, and explainability analysis.
 
 \begin{figure*}[!t]
     \centering
     \includegraphics[width=\textwidth]{images/overall-process-diagram.png}
-    \caption{Overall workflow of the proposed multimodal glaucoma screening and grading framework.}
+    \caption{Overall workflow of the proposed transformer-based multimodal framework for glaucoma screening and grading. Paired fundus photographs and OCT volumes undergo modality-specific preprocessing before being processed using Early, Deep, or Late Fusion. Model development includes task-specific training, hyperparameter optimization, calibration, evaluation, and post-hoc explainability analysis.}
     \label{fig:overall-workflow}
 \end{figure*}
 
-The process begins with paired color fundus photographs and three-dimensional OCT volumes from the GAMMA dataset. A multimodal preprocessing pipeline standardizes both modalities through spatial normalization, region-of-interest extraction, resizing, and modality-specific normalization. Data augmentation, including flipping, rotation, affine transformations, color jittering, and random erasing, is applied to improve generalization under limited data conditions.
+The workflow begins with paired fundus photographs and OCT volumes from the GAMMA dataset. Deterministic preprocessing includes quality inspection, region-of-interest extraction, OCT B-scan selection, spatial resizing, and modality-specific normalization. Stochastic training augmentations include horizontal flipping, mild rotation, affine transformation, fundus-specific color jittering, and random erasing. These transformations are applied only to training samples, while validation and test samples undergo deterministic preprocessing.
 
-After preprocessing, the dataset is organized according to the diagnostic task. For glaucoma screening, the original severity labels are mapped to binary classes, whereas for glaucoma grading the ordinal labels (normal, early, and mid-advanced glaucoma) are preserved. The data are then partitioned according to the experimental protocol using either the official train–validation–test split or stratified five-fold cross-validation to evaluate robustness for both tasks. Class imbalance is addressed through imbalance-aware learning strategies, including sampling and loss-level adjustments, to ensure balanced representation during training.
+The original GAMMA labels are organized according to the target diagnostic task. For binary screening, early and mid-advanced glaucoma are merged into a single positive class, whereas the three original severity categories are retained for grading. The models are evaluated using both the official training--validation--test partition and a five-fold robustness protocol constructed from the combined official training and validation sets.
 
-A transformer-based multimodal fusion model is then initialized using one of three fusion strategies explored in this study: Early Fusion, Deep (intermediate) Fusion, or Late Fusion. Task-aligned architectural variants allow optional fusion enhancement modules to be activated depending on the diagnostic objective. Hyperparameter optimization is conducted using Optuna to identify suitable learning rates, batch sizes, regularization parameters, backbone configurations, and fusion module settings.
+Three fusion architectures are investigated: Early Fusion at the input level, Deep Fusion at the latent representation level, and Late Fusion at the decision level. All three architectures use an OCT multiple-instance learning (OCT-MIL) mechanism to aggregate evidence from a selected subset of OCT B-scans. The architectures support transformer-family backbones, including Vision Transformer (ViT), Data-efficient Image Transformer (DeiT), Swin Transformer, and CoAtNet variants. Optional modules, including Feature-wise Linear Modulation (FiLM), modality-token attention, latent gating, and confidence-aware decision fusion, are treated as model-selection choices rather than being activated uniformly across all experiments.
 
-The selected model is trained using supervised learning with validation-based monitoring to enable early stopping and mitigate overfitting. After training, model calibration is performed using validation data to estimate temperature scaling parameters and optimize decision thresholds for binary or multiclass inference.
+Model configurations are selected through Optuna-based hyperparameter optimization. The search considers the backbone architecture, number of selected OCT slices, learning rate, weight decay, batch size, dropout, regularization, fine-tuning schedule, loss formulation, and fusion-specific modules. The full search space is provided in Supplementary Table~S1, while the configurations selected for the final models are reported with the experimental results. Following model training, temperature scaling and decision-rule selection are performed using validation data. The held-out official test set is used only for final evaluation and is not used for hyperparameter selection or calibration.
 
-Finally, the calibrated model is evaluated on the held-out test set. Performance is assessed using task-appropriate metrics, including accuracy, AUC-ROC, F1-score, precision, recall, and Brier score for glaucoma screening, and quadratically weighted Cohen's Kappa, accuracy, and macro F1-score for glaucoma grading. Grad-CAM-based explainability techniques are additionally applied to generate visual heatmaps for fundus and OCT modalities, highlighting anatomically relevant regions contributing to the model’s predictions.
+\subsection{Dataset and Task Formulation}
+\label{subsec:dataset_tasks}
 
-\subsection{DATASET AND EXPERIMENTAL PROTOCOLS}
-\label{subsec32}
+\subsubsection{GAMMA Dataset}
+\label{subsubsec:gamma_dataset}
 
-\subsubsection{GAMMA Dataset Overview}
-\label{subsec321}
+All experiments use the publicly available Glaucoma Grading from Multi-Modality Images (GAMMA) dataset, released as part of the MICCAI 2021 GAMMA Challenge~\cite{wu2023gamma}. The dataset contains paired color fundus photographs and three-dimensional OCT volumes acquired from the same eyes, making it suitable for evaluating multimodal glaucoma analysis.
 
-All experiments in this study use the publicly available Glaucoma Grading from Multi-Modality Images (GAMMA) dataset~\cite{wu2023gamma}, released for the MICCAI 2021 challenge. The dataset is well suited for multimodal glaucoma analysis because it provides paired color fundus photographs and corresponding three-dimensional OCT volumes acquired from the same eye.
+The dataset comprises 300 paired samples distributed across predefined training, validation, and test sets containing 100 samples each. Each sample consists of a high-resolution color fundus photograph of $2992\times2000$ pixels, an OCT volume containing 256 grayscale B-scans of $512\times992$ pixels, and an expert-provided glaucoma severity label. The three diagnostic categories are normal, early glaucoma, and mid-advanced glaucoma.
 
-The dataset contains 300 patient records organized into predefined training, validation, and test splits of 100 samples each. Every sample includes a high-resolution color fundus photograph ($2992 \times 2000$ pixels), an OCT volume composed of 256 grayscale B-scan slices ($512 \times 992$ pixels per slice), and an expert-annotated glaucoma severity label.
+The OCT volumes were acquired using a dense macula-centered scanning protocol covering a $3\times3$~mm region. Macular OCT imaging provides depth-resolved information related to retinal structures, including the RNFL and GCIPL. Although the dataset does not contain peripapillary OCT scans, the combination of macula-centered OCT and fundus photography provides complementary retinal-layer and optic-disc-related information for multimodal analysis.
 
-OCT volumes are acquired using a dense macula-centered volumetric scanning protocol covering a $3 \times 3$~mm region with 256 B-scans per volume. Macular OCT imaging captures structural changes associated with glaucoma, including variations in the retinal nerve fiber layer (RNFL) and ganglion cell–inner plexiform layer (GCIPL). Although the dataset does not include peripapillary OCT scans, the combination of macula-centered OCT volumes and wide-field fundus photographs provides complementary structural and contextual information for multimodal analysis.
-
-The dataset includes three clinically meaningful severity categories—normal, early glaucoma, and mid-advanced glaucoma—supporting both binary screening and multiclass grading. For screening experiments, severity labels are mapped into binary classes, producing an approximately balanced distribution, while grading experiments retain the original imbalanced class structure. A summary of dataset characteristics, including split-wise sample counts and class distributions for both experimental protocols, is provided in Table~\ref{tab:dataset_summary}.
-
-\begin{table*}[!t]
-    \centering
-    \caption{Summary of dataset characteristics for glaucoma screening and grading protocols using the GAMMA dataset.}
-    \label{tab:dataset_summary}
-    \scriptsize
-    \setlength{\tabcolsep}{5pt}
-    \begin{tabular}{|p{0.17\textwidth}|p{0.15\textwidth}|p{0.18\textwidth}|p{0.4\textwidth}|}
-        \hline
-        \centering \textbf{Protocol} & \textbf{Split}                                                                                                                                                                                                                                  & \textbf{Total Samples} & \textbf{Class Distribution}                       \\
-        \hline
-        \multirow{5}{*}{\parbox{0.16\textwidth}{\centering \textbf{Glaucoma Screening (Binary)}}}
-                                     & Train                                                                                                                                                                                                                                           & 100                    & Negative: 50,\quad Positive: 50                   \\
-                                     & Validation                                                                                                                                                                                                                                      & 100                    & Negative: 50,\quad Positive: 50                   \\
-                                     & Test                                                                                                                                                                                                                                            & 100                    & Negative: 51,\quad Positive: 49                   \\
-        \cline{2-4}
-                                     & \multicolumn{3}{|p{0.73\textwidth}|}{\textit{5-fold cross-validation: Train + Validation merged (200 samples), each fold contains 40 samples (20 Positive / 20 Negative), Test with same held-out test set (100 samples)}}                                                                                                   \\
-        \hline
-        \multirow{5}{*}{\parbox{0.16\textwidth}{\centering \textbf{Glaucoma Grading (Multiclass)}}}
-                                     & Train                                                                                                                                                                                                                                           & 100                    & Normal: 50,\quad Early: 26,\quad Mid-Advanced: 24 \\
-                                     & Validation                                                                                                                                                                                                                                      & 100                    & Normal: 50,\quad Early: 26,\quad Mid-Advanced: 24 \\
-                                     & Test                                                                                                                                                                                                                                            & 100                    & Normal: 51,\quad Early: 25,\quad Mid-Advanced: 24 \\
-        \cline{2-4}
-                                     & \multicolumn{3}{|p{0.73\textwidth}|}{\textit{5-fold cross-validation: Train + Validation merged (200 samples), each fold contains 40 samples (Approx. 20 Normal / 10 Early / 10 Mid-Advanced), Test with same held-out test set (100 samples)}}                                                                              \\
-        \hline
-    \end{tabular}
-\end{table*}
-
-\subsubsection{Dataset-Driven Modelling Constraints}
-\label{subsec:dataset_constraints}
-
-The characteristics of the GAMMA dataset directly influence the design of the proposed framework. Although each OCT volume contains 256 B-scans, only 300 paired fundus--OCT samples are available. Direct full-volume modelling would therefore create a high-dimensional learning problem with substantial overfitting risk. To address this, the proposed framework adopts a small-data modelling strategy in which informative OCT evidence is summarized through attention-based OCT-MIL rather than processing the complete volume as a dense 3D input. The number of selected B-scans is treated as a hyperparameter, allowing the model to balance anatomical coverage, computational cost, and validation performance.
-
-The dataset also contains ordinal severity labels with an imbalanced class distribution for glaucoma grading. This motivates the use of QWK as the primary grading metric, focal loss and sampling control during training, and bootstrap confidence intervals for uncertainty-aware reporting. In contrast, the binary screening formulation produces an approximately balanced positive--negative distribution, allowing sensitivity, specificity, AUC-ROC, and AUC-PR to be interpreted in a clinically meaningful screening context. These dataset-specific constraints justify the use of compact transformer-family backbones, staged fine-tuning, controlled augmentation, calibration, and cross-validation throughout the study.
-
-\subsubsection{Glaucoma Screening Protocol (Binary Classification)}
-\label{subsec322}
-
-For glaucoma screening experiments, the original GAMMA grading labels are converted into a binary classification task. Samples labeled as early glaucoma and mid-advanced glaucoma are merged into a single positive class representing glaucomatous eyes, while normal samples form the negative class. This formulation reflects the clinical objective of screening, which aims to identify glaucoma as early as possible.
-
-Under this mapping, the dataset becomes approximately balanced across the predefined splits, with comparable numbers of positive and negative samples. The balanced distribution reduces training bias and enables direct evaluation of sensitivity and specificity without strong class skew.
-
-Both binary screening and multiclass grading experiments follow the official GAMMA train–validation–test splits. In addition, robustness is evaluated using stratified five-fold cross-validation, where the training and validation sets are merged and partitioned into folds while preserving class proportions.
-
-\subsubsection{Glaucoma Grading Protocol (Multiclass Classification)}
-\label{subsec323}
-
-For glaucoma grading experiments, the original GAMMA severity labels are preserved, resulting in a three-class classification task consisting of normal, early glaucoma, and mid-advanced glaucoma categories. Unlike the screening setup, the grading task exhibits inherent class imbalance, with an approximate ratio of 50:26:24 for normal, early, and mid-advanced classes across the dataset splits. This distribution reflects real-world clinical prevalence and increases the difficulty of severity grading.
-
-Grading experiments primarily follow the official GAMMA dataset splits to maintain consistency with prior challenge-based evaluations. In addition, stratified five-fold cross-validation is conducted to assess performance stability under alternative data partitions.
-
-Model performance is primarily evaluated using quadratically weighted Cohen's kappa (QWK), which accounts for the ordinal nature of glaucoma severity. Complementary metrics include accuracy and macro-averaged F1-score. To further quantify robustness and statistical reliability under class imbalance, bootstrap-based confidence interval analysis is applied to the test set predictions.
-
-\subsection{Data Preprocessing}
-\label{subsec33}
-
-Robust data preprocessing is essential for stable optimization, effective cross-modality alignment, and reproducible evaluation in multimodal deep learning frameworks~\cite{virbukaite2023impact,sun2025hybrid}. The proposed preprocessing pipeline standardizes color fundus photographs and OCT volumes through a staged sequence comprising quality control, spatial normalization, region-of-interest (ROI) extraction, data augmentation, numerical normalization, and framework-compatible tensor preparation. The pipeline balances anatomical fidelity, computational efficiency, and variability required for robust transformer training on modest-sized datasets.
-
-\paragraph{Quality control and OCT slice selection}
-All paired samples are visually inspected for severe motion artifacts, truncation, glare, or acquisition failures. The GAMMA dataset exhibited consistently high image quality, and no samples were excluded. Uniform acquisition protocols further minimized inter-sample variation in resolution and illumination.
-
-For OCT volumes, informative B-scan slices are selected to ensure coverage of anatomically relevant macular regions while avoiding the computational and statistical burden of full-volume training. Each GAMMA OCT volume contains 256 B-scans, but the paired dataset contains only 300 labelled eyes. Processing all slices would substantially increase memory usage, inference time, and overfitting risk. Therefore, the proposed framework selects a compact subset of B-scans centred around the estimated foveal slice and aggregates them using OCT-MIL.
-
-Empirical inspection revealed that the foveal center slice is typically located near the mid-volume index (approximately the 128th slice), corresponding to the deepest foveal pit. To ensure robustness under inter-subject variability, an automated foveal center detection algorithm is employed. The method identifies the slice that maximizes the arc length of the vitreous-retina interface, which is characteristic of the foveal depression. Candidate slice counts are defined as symmetric windows around the detected foveal centre. Smaller windows provide compact evidence and reduce overfitting, whereas larger windows provide wider macular context at increased computational cost. The final number of OCT slices is selected during validation-based hyperparameter optimization, allowing the model to choose the most effective trade-off between anatomical coverage and data efficiency. Algorithm~\ref{alg:foveal_detection} outlines the procedure used to identify the foveal center slice.
-
-\begin{algorithm}[!t]
-    \caption{Foveal Center Slice Detection}
-    \label{alg:foveal_detection}
-    \begin{algorithmic}[1]
-
-        \STATE \textbf{Input:} OCT volume $\{S_0, S_1, \ldots, S_{n-1}\}$; search radius $r$
-        \STATE \textbf{Output:} Foveal center slice index $i^*$
-
-        \STATE Initialize $i^* \leftarrow \lfloor n/2 \rfloor$
-        \STATE Apply Gaussian blur to slice $S_{i^*}$
-        \STATE Extract edges using Canny filtering
-        \STATE Detect vitreous--retina interface and compute arc length $L_{\max}$
-
-        \FOR{$\delta = 1$ to $r$}
-        \FOR{$d \in \{-1, +1\}$}
-        \STATE $i \leftarrow i^* + d \cdot \delta$
-        \STATE Compute interface arc length $L_i$
-        \IF{$L_i > L_{\max}$}
-        \STATE $L_{\max} \leftarrow L_i$
-        \STATE $i^* \leftarrow i$
-        \ENDIF
-        \ENDFOR
-        \ENDFOR
-
-        \STATE \textbf{Return} $i^*$
-
-    \end{algorithmic}
-\end{algorithm}
-
-\paragraph{ROI localization and cropping}
-Square ROIs are preferred to simplify patch tokenization and positional encoding in transformer backbones. For fundus images, a contour-based field-of-view detection algorithm (Algorithm~\ref{alg:fundus_roi}) is applied to isolate the circular retinal region and remove non-informative black borders. The minimal enclosing square centered on the retinal field is extracted and resized, preserving the full retinal context without explicitly localizing clinical landmarks such as the optic disc.
-
-This design choice is motivated by the ability of transformer architectures to model long-range dependencies, allowing the network to leverage global contextual cues, vascular patterns, and peripheral structures that may contribute to glaucoma diagnosis.
-
-\begin{algorithm}[!t]
-    \caption{Field-of-View Centered ROI Extraction (Fundus)}
-    \label{alg:fundus_roi}
-    \begin{algorithmic}[1]
-
-        \STATE \textbf{Input:} Fundus image $I$; output size $R$; threshold $\tau$
-        \STATE \textbf{Output:} Cropped ROI image $I_{\text{roi}}$
-
-        \STATE Convert $I$ to grayscale image $I_g$
-        \STATE Binarize image as $I_b(x,y) \leftarrow \mathbb{I}[I_g(x,y) > \tau]$
-        \STATE Detect external contours $\mathcal{C}$ in $I_b$
-
-        \IF{$\mathcal{C} = \emptyset$}
-        \STATE Resize $I$ to $R \times R$
-        \STATE $I_{\text{roi}} \leftarrow I$
-        \ELSE
-        \STATE Select largest contour $c^* \leftarrow \arg\max_{c \in \mathcal{C}} \text{Area}(c)$
-        \STATE Compute centroid $(c_x, c_y)$ of $c^*$ using image moments
-        \STATE Set square side length $s \leftarrow \max(w, h)$ from bounding box of $c^*$
-        \STATE Crop square ROI centered at $(c_x, c_y)$ (clipped to image bounds)
-        \STATE Resize cropped ROI to $R \times R$
-        \STATE $I_{\text{roi}} \leftarrow$ cropped image
-        \ENDIF
-
-        \STATE \textbf{Return} $I_{\text{roi}}$
-
-    \end{algorithmic}
-\end{algorithm}
-
-
-For OCT B-scans, where retinal tissue occupies a limited vertical region, a weighted gradient-based sliding window approach is employed to extract high-information ROIs. Algorithm~\ref{alg:oct_roi} prioritizes regions containing prominent retinal layers, particularly the retinal nerve fiber layer (RNFL), while suppressing peripheral background regions. This approach preserves diagnostically relevant structural information and reduces geometric distortion associated with naive global resizing.
-
-\begin{algorithm}[!t]
-    \caption{Weighted Gradient-Based ROI Selection (OCT B-Scan)}
-    \label{alg:oct_roi}
-    \begin{algorithmic}[1]
-
-        \STATE \textbf{Input:} OCT image $I$ of size $H \times W$; output size $R$; filter size $k$; number of steps $N_s$
-        \STATE \textbf{Output:} High-information ROI $I_{\text{roi}}$
-
-        \STATE Let $L \leftarrow \min(H, W)$
-        \STATE Apply median filtering with kernel size $k$ to obtain $I_d$
-        \STATE Compute gradient magnitude
-        \[
-            G \leftarrow \sqrt{\text{Sobel}_x(I_d)^2 + \text{Sobel}_y(I_d)^2}
-        \]
-
-        \STATE Set center index $c \leftarrow \lfloor L/2 \rfloor$
-        \STATE Define triangular weight mask
-        \[
-            W(i,j) \leftarrow \max\!\left(0,\, 1 - \frac{\sqrt{(i-c)^2 + (j-c)^2}}{\sqrt{2}\,c}\right)
-        \]
-
-        \STATE Slide an $L \times L$ window along the longer image axis using $N_s$ positions
-        \FOR{each window position $p$}
-        \STATE Compute weighted score $S(p) \leftarrow \sum_{i,j} G_p(i,j)\cdot W(i,j)$
-        \ENDFOR
-
-        \STATE Select optimal position $p^* \leftarrow \arg\max_p S(p)$
-        \STATE Crop ROI at position $p^*$ and resize to $R \times R$ to obtain $I_{\text{roi}}$
-
-        \STATE \textbf{Return} $I_{\text{roi}}$
-
-    \end{algorithmic}
-\end{algorithm}
-
-\paragraph{Resizing}
-All cropped ROIs are resized to $224 \times 224$ pixels, matching common pretrained transformer configurations such as ViT and Swin Transformer. This resolution preserves optic disc–scale features in fundus images and intra-layer contrast in OCT B-scans while maintaining manageable memory consumption for multimodal mini-batches.
-
-\paragraph{Data augmentation}
-To mitigate overfitting and enhance invariance, stochastic data augmentation is applied exclusively to the training split. Augmentations include horizontal flipping, mild rotations, affine transformations, color jittering (fundus only), and random erasing (both modalities). Parameter ranges are conservatively bounded to avoid anatomically implausible distortions. Validation and test sets undergo only deterministic preprocessing to ensure fair and consistent evaluation.
-
-\paragraph{Normalization}
-Fundus images are normalized using ImageNet channel-wise statistics to align with pretrained backbone initialization. OCT images are z-score normalized using the training-set mean and standard deviation, harmonizing intensity distributions across slices and subjects.
-
-\paragraph{Two-stage preprocessing pipeline}
-Computationally intensive deterministic operations, including slice selection, ROI extraction, and resizing, are performed offline and cached to ensure reproducibility and reduce per-epoch overhead. Lightweight stochastic augmentations and final tensor normalization are applied online within the data loader. This two-stage design minimizes GPU idle time, facilitates efficient ablation studies, and guarantees consistent anatomical framing across fusion strategies and diagnostic tasks.
-
-
-\subsection{Fusion Model Architectures}
-\label{subsec34}
-
-The core contribution of the proposed framework is the design of three complementary multimodal fusion paradigms—\textit{Early}, \textit{Deep}, and \textit{Late} fusion—that integrate color fundus photographs and OCT B-scan information at progressively deeper representation levels. Together, these strategies span a broad spectrum of fusion granularities, enabling systematic investigation of how the depth of multimodal interaction affects diagnostic performance for both glaucoma screening and glaucoma grading.
-
-Each fusion architecture is designed to be parameter-efficient and reusable across multiple transformer backbones, including ViT, DeiT, Swin Transformer, and CoAtNet. A common architectural backbone is maintained across diagnostic objectives, while task-aligned variants are realized by selectively enabling or disabling optional fusion enhancement modules. This design reflects the empirical observation that increased architectural complexity does not uniformly benefit all diagnostic tasks.
-
-All fusion strategies share an \textit{OCT Multiple Instance Learning (OCT-MIL)} module that aggregates a variable number of OCT B-scan slices into a stable per-eye representation. For Early Fusion, the representation is produced as a spatial tensor, whereas Deep and Late Fusion operate on compact embedding representations. A unified classifier structure is employed across all strategies, with the output layer adapted to support binary screening or multiclass grading.
-
-The proposed multimodal architectures are illustrated in Figures~\ref{early-fusion-architecture}, \ref{deep-fusion-architecture}, and \ref{late-fusion-architecture}. These figures present the Early, Deep, and Late Fusion designs introduced in this work and highlight key components of the framework, including the OCT-MIL attention-based slice aggregation module and task-aligned fusion enhancement modules. For clarity, related functional components are grouped using boxed outlines in the diagrams, allowing the newly introduced modules and fusion-specific enhancements to be easily distinguished from the shared backbone structures.
-
-The detailed architectural formulations and fusion-specific design elements—including optional cross-modal attention mechanisms, gating operations, and confidence-aware decision fusion—are described in the following subsections.
-
-\subsubsection{Implementation Details of Optional Fusion Modules}
-\label{subsec:fusion_module_details}
-
-All optional fusion modules are implemented as lightweight components to reduce overfitting under the limited GAMMA sample size. FiLM modulation is implemented using a two-layer multilayer perceptron that receives a global multimodal descriptor and predicts channel-wise modulation parameters $\gamma$ and $\beta$. To stabilize optimization, the modulation is bounded using $\tanh(\cdot)$ and scaled by 0.1, so that the module initially behaves close to an identity transformation.
-
-For Deep Fusion, the optional attention module is implemented as modality-token self-attention over a compact token sequence consisting of a learnable classification token, a projected fundus embedding, and a projected OCT embedding. Although this operation is referred to as cross-modal interaction, it is computationally implemented as multi-head self-attention over modality tokens, allowing fundus and OCT representations to exchange information through the shared attention matrix. The gating module computes a sample-specific gate vector from the concatenated fundus and OCT embeddings and applies element-wise reweighting to the fused representation. This enables the model to suppress noisy latent dimensions while preserving discriminative cross-modal information.
-
-For reproducibility, newly initialized linear and convolutional layers use Xavier initialization, biases are initialized to zero, and gate biases are initialized to zero so that the initial gating behaviour is balanced. Learnable classification tokens are initialized from a truncated normal distribution. Pretrained transformer backbones are initialized from ImageNet-pretrained weights where available, while task-specific classifier heads and fusion modules are trained from scratch. Temperature parameters for calibration are initialized to one, corresponding to uncalibrated logits at the beginning of post-hoc optimization.
-
-\subsubsection{Early Fusion Strategy}
-\label{subsubsec-earlyfusion}
-
-The Early Fusion strategy performs \emph{pixel-level multimodal integration} by combining structural information from OCT B-scan volumes with texture and color cues from fundus photographs at the input stage. This strategy enables joint learning of cross-modal correlations at the input level. The same Early Fusion formulation is used across diagnostic protocols, with task-specific adaptations limited to the classifier head and optional fusion enhancement modules. Figure~\ref{early-fusion-architecture} illustrates the overall Early Fusion architecture.
-
-\begin{figure*}[!t]
-    \centering
-    \includegraphics[width=1.0\textwidth]{images/early-fusion-architecture.png}
-    \caption{Proposed Early Fusion architecture diagram, illustrating pixel-level multimodal integration through MIL-guided OCT aggregation, optional FiLM modulation, and a shared transformer backbone.}
-    \label{early-fusion-architecture}
-\end{figure*}
-
-Each sample consists of a preprocessed color fundus image
-$\mathbf{F}_i \in \mathbb{R}^{3 \times H \times W}$
-and a corresponding OCT volume
-$\{\mathbf{O}_{i,s}\}_{s=1}^{S}$,
-where each B-scan slice
-$\mathbf{O}_{i,s} \in \mathbb{R}^{1 \times H \times W}$.
-Directly stacking all OCT slices may overweight the OCT modality and increase computational cost. Instead, a lightweight multiple instance learning (MIL) attention mechanism is employed to estimate the relative contribution of each slice. To ensure compatibility with transformer encoders, grayscale OCT slices are channel-duplicated and passed through a shared encoder to obtain slice-level features $e_{i,s}$. Attention weights are computed as \eqrefp{eq:mil-attn-early}.
-\begin{equation}
-    a_{i,s} =
-    \frac{\exp\!\big(\mathbf{v}^{\top}\sigma(W e_{i,s})\big)}
-    {\sum_{t=1}^{S} \exp\!\big(\mathbf{v}^{\top}\sigma(W e_{i,t})\big)},
-    \quad \sum_{s=1}^{S} a_{i,s}=1,
-    \label{eq:mil-attn-early}
-\end{equation}
-where $W$ and $\mathbf{v}$ are trainable parameters and $\sigma(\cdot)$ denotes a ReLU activation.
-
-Using these attention scores, a spatially aligned OCT representation is obtained through weighted aggregation as \eqrefp{eq:oct-agg},
-\begin{equation}
-    \mathbf{O}_i^{\text{agg}}(p,q) =
-    \sum_{s=1}^{S} a_{i,s}\,\mathbf{O}_{i,s}(p,q),
-    \quad
-    \mathbf{O}_i^{\text{agg}} \in \mathbb{R}^{1 \times H \times W},
-    \label{eq:oct-agg}
-\end{equation}
-which preserves spatial fidelity while emphasizing diagnostically informative slices across the OCT volume.
-
-The aggregated OCT map is concatenated with the fundus image to form a preliminary multimodal tensor
-$\mathbf{X}_i = [\,\mathbf{F}_i \,\|\, \mathbf{O}_i^{\text{agg}}\,] \in \mathbb{R}^{4 \times H \times W}$.
-To maintain compatibility with ImageNet-pretrained transformer backbones, a $1 \times 1$ convolutional adapter with batch normalization projects this four-channel tensor to three channels \eqrefp{eq:conv-adapt}.
-\begin{equation}
-    \hat{\mathbf{X}}_i = \mathcal{A}(\mathbf{X}_i)
-    \in \mathbb{R}^{3 \times H \times W}.
-    \label{eq:conv-adapt}
-\end{equation}
-
-An optional Feature-wise Linear Modulation (FiLM) layer may be applied prior to transformer encoding to adaptively recalibrate channel activations based on global multimodal context. Given modulation parameters $\gamma_i, \beta_i \in \mathbb{R}^C$, FiLM modulation is defined as \eqrefp{eq:film-mod}.
-\begin{equation}
-    \begin{aligned}
-        \hat{\mathbf{X}}_i^{\text{film}}(k,p,q)
-         & =
-        \bigl(1 + 0.1\tanh(\gamma_{i,k})\bigr)\,
-        \hat{\mathbf{X}}_i(k,p,q)         \\
-         & \quad + 0.1\tanh(\beta_{i,k}),
-    \end{aligned}
-    \label{eq:film-mod}
-\end{equation}
-
-where bounded scaling is used to stabilize training. FiLM modulation is treated as an optional enhancement module and is enabled or disabled depending on the diagnostic protocol and empirical performance, reflecting the observation that architectural enrichment does not uniformly benefit all tasks.
-
-The resulting multimodal representation is encoded using a shared transformer backbone selected through hyperparameter optimization (e.g., ViT, DeiT, Swin Transformer, or CoAtNet), producing a high-level embedding $\mathbf{z}_i \in \mathbb{R}^D$. This embedding is passed to a lightweight classifier head consisting of an input projection layer that reduces dimensionality ($D \rightarrow D/4$), followed by a ReLU activation and dropout regularization. For tasks requiring higher decision complexity, the classifier head optionally includes additional intermediate layers with progressive dimensionality reduction, enabling flexible modeling of non-linear decision boundaries.
-
-The final output layer is configured according to the diagnostic objective. For binary glaucoma screening, the classifier produces a single logit optimized using a sigmoid-based binary classification loss. For multiclass glaucoma grading, the output dimensionality is adjusted to match the number of severity categories, and the model is trained using a softmax-based multiclass loss or its class-imbalance–aware variants. This task-specific adaptation preserves a unified architectural design while enabling effective learning for both screening and grading objectives.
-
-
-\subsubsection{Deep Fusion Strategy}
-\label{subsubsec-deepfusion}
-
-The Deep Fusion strategy performs \emph{latent-level multimodal integration} by combining semantic representations independently extracted from fundus images and OCT volumes. Deep Fusion integrates modality representations at the latent feature level, enabling cross-modal reasoning while preserving modality-specific feature extraction. This strategy is applicable to both binary glaucoma screening and multiclass glaucoma grading, with task-aligned architectural variants selected based on the expected complexity of the diagnostic objective and the available training data. Figure~\ref{deep-fusion-architecture} illustrates the overall Deep Fusion design.
-
-
-\begin{figure*}[!t]
-    \centering
-    \includegraphics[width=1.0\textwidth]{images/deep-fusion-architecture.png}
-    \caption{Proposed Deep Fusion architecture diagram, illustrating latent-level integration through independent modality encoding, MIL-based OCT aggregation, optional cross-modal self-attention, gated rebalancing, and a shared classifier head.}
-    \label{deep-fusion-architecture}
-\end{figure*}
-
-Let the preprocessed fundus image be
-$\mathbf{F}_i \in \mathbb{R}^{3 \times H \times W}$,
-and the corresponding OCT volume consist of slices
-$\{\mathbf{O}_{i,s}\}_{s=1}^{S}$,
-where each slice
-$\mathbf{O}_{i,s} \in \mathbb{R}^{1 \times H \times W}$.
-For the OCT branch, a multiple instance learning (MIL) attention mechanism is employed to estimate slice relevance as \eqrefp{eq:mil-attn-deep},
-\begin{equation}
-    a_{i,s} =
-    \frac{\exp\!\big(\mathbf{v}^{\top}\sigma(W e_{i,s})\big)}
-    {\sum_{t=1}^{S}\exp\!\big(\mathbf{v}^{\top}\sigma(W e_{i,t})\big)},
-    \quad
-    \sum_{s=1}^{S} a_{i,s} = 1,
-    \label{eq:mil-attn-deep}
-\end{equation}
-where $e_{i,s}$ denotes the encoded feature of the $s^{\text{th}}$ OCT slice, and $W$ and $\mathbf{v}$ are trainable parameters. The aggregated OCT embedding is computed as \eqrefp{eq:mil-agg}.
-\begin{equation}
-    \mathbf{e}_i^{O} = \sum_{s=1}^{S} a_{i,s}\,\mathbf{e}_{i,s}^{O}.
-    \label{eq:mil-agg}
-\end{equation}
-
-Modality-specific encoders extract compact representations from each input as \eqrefp{eq:modal-enc}.
-\begin{equation}
-    \begin{aligned}
-        \mathbf{e}_i^{F}
-         & = \mathrm{Enc}_F(\mathbf{F}_i)
-        \in \mathbb{R}^{D_F},                    \\
-        \mathbf{e}_{i,s}^{O}
-         & = \mathrm{Enc}_{\text{slice}}\!\left(
-        \mathrm{Repeat3}(\mathbf{O}_{i,s})
-        \right)
-        \in \mathbb{R}^{D_O}.
-    \end{aligned}
-    \label{eq:modal-enc}
-\end{equation}
-These embeddings are projected into a shared latent space of dimension
-$D = \max(D_F, D_O)$
-using learned linear transformations \eqrefp{eq:proj-latent}.
-\begin{equation}
-    \tilde{\mathbf{e}}_i^{F} = P_F \mathbf{e}_i^{F},
-    \qquad
-    \tilde{\mathbf{e}}_i^{O} = P_O \mathbf{e}_i^{O},
-    \quad
-    \tilde{\mathbf{e}}_i^{F}, \tilde{\mathbf{e}}_i^{O} \in \mathbb{R}^{D}.
-    \label{eq:proj-latent}
-\end{equation}
-
-To enable cross-modal interaction, an optional latent interaction block can be introduced. In its expressive form, a learnable classification token
-$\mathbf{c}_0 \in \mathbb{R}^{D}$
-is prepended to form a compact token sequence \eqrefp{eq:token-seq}.
-\begin{equation}
-    \mathbf{T}_i =
-    \bigl[
-    \mathbf{c}_0 \;\|\;
-    \tilde{\mathbf{e}}_i^{F} \;\|\;
-    \tilde{\mathbf{e}}_i^{O}
-    \bigr]
-    \in \mathbb{R}^{3 \times D}.
-    \label{eq:token-seq}
-\end{equation}
-A single multi-head self-attention layer may then be applied to facilitate cross-modal reasoning as \eqrefp{eq:mha},
-\begin{equation}
-    \hat{\mathbf{T}}_i = \mathrm{MHA}(\mathbf{T}_i, \mathbf{T}_i, \mathbf{T}_i),
-    \label{eq:mha}
-\end{equation}
-yielding a fused representation derived from the classification token \eqrefp{eq:fused-rep}.
-\begin{equation}
-    \mathbf{h}_i = \hat{\mathbf{T}}_i[0].
-    \label{eq:fused-rep}
-\end{equation}
-
-However, for multiclass glaucoma grading, the simplified Deep Fusion variant is intentionally adopted. Given the limited dataset size and the increased decision complexity associated with ordinal class boundaries, additional interaction mechanisms such as multi-head self-attention, classification tokens, and gating were hypothesized to introduce unnecessary representational noise and over-parameterization. In this setting, the fused representation is instead obtained through direct concatenation and linear projection of modality embeddings, prioritizing stable feature alignment over expressive interaction.
-
-An optional gated rebalancing mechanism further modulates modality contributions by computing a sample-specific gate vector from the concatenated projected fundus and OCT embeddings as \eqrefp{eq:gate},
-\begin{equation}
-    \mathbf{g}_i =
-    \sigma\!\left(W_g [\,\tilde{\mathbf{e}}_i^{F};\tilde{\mathbf{e}}_i^{O}\,] + \mathbf{b}_g\right)
-    \in \mathbb{R}^{D},
-    \label{eq:gate}
-\end{equation}
-which is applied elementwise to the attended representation \eqrefp{eq:gated-feat}
-\begin{equation}
-    \mathbf{h}_i' = \mathbf{g}_i \odot \mathbf{h}_i,
-    \label{eq:gated-feat}
-\end{equation}
-While this mechanism enhances robustness in binary screening by adaptively suppressing noisy modality dimensions, it is intentionally disabled for multiclass grading to avoid attenuation of subtle class-discriminative cues. This deliberate selection of Deep Fusion variants enables a principled trade-off between expressive cross-modal interaction and generalization stability across glaucoma screening and grading tasks.
-
-The final fused representation is passed to the shared classifier head, which projects the latent feature into a task-specific output space \eqrefp{eq:class-head-deep}:
-\begin{equation}
-    \hat{\mathbf{y}}_i =
-    \mathbf{W}_c \,
-    \mathrm{Drop}\!\bigl(\sigma(\mathbf{W}_h \mathbf{h}_i')\bigr),
-    \label{eq:class-head-deep}
-\end{equation}
-where $\sigma(\cdot)$ denotes a ReLU activation and dropout provides regularization. The output dimensionality of $\hat{\mathbf{y}}_i$ is configured according to the diagnostic objective, producing a single logit for binary glaucoma screening or a $C$-dimensional logit vector ($C=3$) for multiclass glaucoma grading.
-
-
-
-\subsubsection{Late Fusion Strategy}
-\label{subsubsec-latefusion}
-
-The Late Fusion strategy performs \emph{decision-level multimodal integration} by combining independent modality predictions at the logit level, rather than at the pixel or feature representation stages. In this design, fundus and OCT modalities are processed by separate encoding and classification branches, and their outputs are fused through calibrated and confidence-aware aggregation. This formulation is inherently flexible and robust to modality-specific degradation, making it well suited for both binary glaucoma screening and multiclass glaucoma grading. Figure~\ref{late-fusion-architecture} illustrates the overall Late Fusion design.
-
-\begin{figure*}[!t]
-    \centering
-    \includegraphics[width=1.0\textwidth]{images/late-fusion-architecture.png}
-    \caption{Proposed Late Fusion architecture diagram, illustrating decision-level integration through independent modality encoding, optional temperature calibration, confidence-aware logit fusion, and final glaucoma prediction.}
-    \label{late-fusion-architecture}
-\end{figure*}
-
-Let the preprocessed fundus image be
-$\mathbf{F}_i \in \mathbb{R}^{3 \times H \times W}$,
-and the corresponding OCT volume consist of slices
-$\{\mathbf{O}_{i,s}\}_{s=1}^{S}$,
-where each slice
-$\mathbf{O}_{i,s} \in \mathbb{R}^{1 \times H \times W}$.
-As in the previous fusion strategies, the OCT branch employs a Multiple Instance Learning (MIL) attention mechanism to aggregate slice-level features into a single per-eye embedding \eqrefp{eq:mil-late}:
-\begin{equation}
-    a_{i,s} =
-    \frac{\exp(u_{i,s})}{\sum_{t=1}^{S}\exp(u_{i,t})},
-    \qquad
-    \mathbf{e}_i^{O} = \sum_{s=1}^{S} a_{i,s}\,\mathbf{f}_{i,s},
-    \label{eq:mil-late}
-\end{equation}
-where $u_{i,s}$ denotes the attention score and $\mathbf{f}_{i,s}$ the latent feature of slice $s$.
-
-Independent modality-specific encoders then extract global representations \eqrefp{eq:enc-late}:
-\begin{equation}
-    \mathbf{e}_i^{F} = \mathrm{Enc}_F(\mathbf{F}_i),
-    \qquad
-    \mathbf{e}_i^{O} = \mathrm{Enc}_O(\{\mathbf{O}_{i,s}\}),
-    \label{eq:enc-late}
-\end{equation}
-with $\mathbf{e}_i^{F} \in \mathbb{R}^{D_F}$ and $\mathbf{e}_i^{O} \in \mathbb{R}^{D_O}$. Each branch produces task-aligned classification logits via a lightweight classifier head \eqrefp{eq:logits-late}:
-\begin{equation}
-    \boldsymbol{\ell}_i^{F} = \mathrm{Head}_F(\mathbf{e}_i^{F}),
-    \qquad
-    \boldsymbol{\ell}_i^{O} = \mathrm{Head}_O(\mathbf{e}_i^{O}),
-    \label{eq:logits-late}
-\end{equation}
-where the output dimensionality corresponds to the diagnostic objective, yielding a scalar logit for binary screening or a vector of logits for multiclass grading.
-
-Prior to fusion, the branch logits may be optionally calibrated using temperature scaling to harmonize confidence levels across modalities \eqrefp{eq:temp-calib}:
-\begin{equation}
-    \tilde{\boldsymbol{\ell}}_i^{F} = \frac{\boldsymbol{\ell}_i^{F}}{\tau_F},
-    \qquad
-    \tilde{\boldsymbol{\ell}}_i^{O} = \frac{\boldsymbol{\ell}_i^{O}}{\tau_O},
-    \qquad
-    \tau_F, \tau_O > 0,
-    \label{eq:temp-calib}
-\end{equation}
-where $\tau_F$ and $\tau_O$ are learned or fixed temperature parameters. When calibration is disabled, both temperatures are set to unity.
-
-To enable uncertainty-aware fusion, a compact confidence estimation module may be employed to compute sample-specific modality weights based on the calibrated logits. A reliability vector is first constructed from summary statistics of the modality outputs \eqrefp{eq:reliability-vector}:
-\begin{equation}
-    \mathbf{v}_i =
-    \bigl[
-        \mathrm{stat}(\tilde{\boldsymbol{\ell}}_i^{F}),
-        \;
-        \mathrm{stat}(\tilde{\boldsymbol{\ell}}_i^{O})
-        \bigr],
-    \label{eq:reliability-vector}
-\end{equation}
-where $\mathrm{stat}(\cdot)$ denotes simple logit-derived measures (e.g., magnitude or distributional statistics). A lightweight multilayer perceptron followed by a Softmax operation yields normalized modality confidence weights as \eqrefp{eq:confidence-weights}.
-\begin{equation}
-    [\,c_i^{F}, c_i^{O}\,] =
-    \mathrm{Softmax}\!\bigl(\mathrm{MLP}(\mathbf{v}_i)\bigr),
-    \qquad
-    c_i^{F} + c_i^{O} = 1.
-    \label{eq:confidence-weights}
-\end{equation}
-
-The final fused prediction is obtained via a weighted linear combination of calibrated logits \eqrefp{eq:fused-logits}:
-\begin{equation}
-    \hat{\boldsymbol{y}}_i =
-    c_i^{F}\,\tilde{\boldsymbol{\ell}}_i^{F}
-    +
-    c_i^{O}\,\tilde{\boldsymbol{\ell}}_i^{O},
-    \label{eq:fused-logits}
-\end{equation}
-where $\hat{\boldsymbol{y}}_i$ is a scalar for binary screening or a logit vector for multiclass grading. When confidence weighting is disabled, fusion reduces to simple arithmetic averaging of branch outputs as \eqrefp{eq:mean-logit}.
-\begin{equation}
-    \hat{y}_i = \frac{\tilde{\ell}_i^{F} + \tilde{\ell}_i^{O}}{2}.
-    \label{eq:mean-logit}
-\end{equation}
-
-Overall, the Late Fusion strategy preserves the full capacity of independent modality-specific models while introducing a principled mechanism for calibrated and uncertainty-aware decision blending. Temperature scaling and confidence-based weighting are treated as optional enhancement modules and can be enabled selectively based on the diagnostic task and empirical behavior. This design enables a controlled trade-off between robustness, interpretability, and model complexity, supporting unified evaluation of glaucoma screening and grading within a single decision-level fusion framework.
-
-\subsection{TRAINING AND INFERENCE PIPELINE}
-\label{subsec:training_inference}
-
-The proposed multimodal framework was trained using a reproducible pipeline designed to support both binary screening and multiclass grading. While the core architectural components remain consistent across diagnostic objectives, the training and inference procedures incorporate task-specific adaptations in data handling, loss formulation, and optimization strategies to address the differing complexity and class distributions of screening and grading tasks.
-
-All models were trained independently for each fusion configuration under a unified experimental protocol that integrates automated hyperparameter optimization, regularization, early stopping, and post-hoc calibration. For glaucoma screening, the pipeline emphasizes stable convergence and discriminative performance, while for glaucoma grading it incorporates additional mechanisms to handle class imbalance and improve generalization under limited data. Inference is performed using calibrated model outputs, enabling consistent evaluation across fusion strategies and diagnostic protocols.
-
-
-\subsubsection{Hyperparameter Optimization}
-\label{subsubsec:hyperopt}
-
-Hyperparameter optimization was conducted using Bayesian optimization implemented through the Optuna framework. The optimization process was designed to be task-aware, with objective functions and search spaces adapted according to the diagnostic protocol. For binary glaucoma screening, optimization focused on maximizing validation AUC, while for multiclass glaucoma grading, objective metrics were selected to minimize the validation loss.
-
-For each fusion strategy, an adequate number of independent optimization trials were executed under controlled data augmentation and backbone configurations. Early stopping based on validation performance was applied during each trial to prevent overfitting and reduce computational overhead. The optimal hyperparameter configuration identified for each fusion strategy was subsequently used for full training and evaluation on the corresponding diagnostic task. Table~\ref{tab:hyperparameters} summarizes the key hyperparameters and search spaces explored during the optimization process for both screening and grading protocols.
-
-
-\begin{table*}[!t]
-    \centering
-    \caption{Notable hyperparameters and search spaces used in Optuna-based optimization for glaucoma screening and grading.}
-    \label{tab:hyperparameters}
-    \scriptsize
-    \setlength{\tabcolsep}{6pt}
-    \begin{tabular}{|p{0.28\textwidth}|p{0.20\textwidth}|p{0.30\textwidth}|p{0.12\textwidth}|}
-        \hline
-        \textbf{Parameter}                                                       & \textbf{Distribution Type} & \textbf{Range / Values} & \textbf{Applicable Protocol} \\
-        \hline
-        Learning Rate                                                            &
-        Log-uniform                                                              &
-        $[1\times10^{-5},\,1\times10^{-3}]$                                      &
-        Both                                                                                                                                                           \\
-        \hline
-        Weight Decay                                                             &
-        Log-uniform                                                              &
-        $[1\times10^{-5},\,5\times10^{-3}]$                                      &
-        Both                                                                                                                                                           \\
-        \hline
-        Batch Size                                                               &
-        Categorical                                                              &
-        \{8, 16\}                                                                &
-        Both                                                                                                                                                           \\
-        \hline
-        Number of OCT Slices                                                     &
-        Categorical                                                              &
-        \{1, 5, 7, 13, 17, 21, 29\}                                              &
-        Both                                                                                                                                                           \\
-        \hline
-        Transformer Dropout                                                      &
-        Uniform                                                                  &
-        [0.0, 0.75]                                                              &
-        Both                                                                                                                                                           \\
-        \hline
-        Classifier Dropout                                                       &
-        Uniform                                                                  &
-        [0.2, 0.55]                                                              &
-        Both                                                                                                                                                           \\
-        \hline
-        Label Smoothing                                                          &
-        Uniform                                                                  &
-        [0.0, 0.15]                                                              &
-        Both                                                                                                                                                           \\
-        \hline
-        Smoothing Decay Epoch                                                    &
-        Integer (Uniform)                                                        &
-        [5, 15]                                                                  &
-        Both                                                                                                                                                           \\
-        \hline
-        Warmup Epochs                                                            &
-        Integer (Uniform)                                                        &
-        [2, 8]                                                                   &
-        Both                                                                                                                                                           \\
-        \hline
-        Early Stopping Patience                                                  &
-        Integer (Uniform)                                                        &
-        [5, 15]                                                                  &
-        Both                                                                                                                                                           \\
-        \hline
-        Freeze Backbone Epochs                                                   &
-        Integer (Uniform)                                                        &
-        [0, 3]                                                                   &
-        Both                                                                                                                                                           \\
-        \hline
-        Final Fine-tune Epochs                                                   &
-        Integer (Uniform)                                                        &
-        [0, 5]                                                                   &
-        Both                                                                                                                                                           \\
-        \hline
-        Fine-tune Learning Rate                                                  &
-        Log-uniform                                                              &
-        $[1\times10^{-6},\,2\times10^{-4}]$                                      &
-        Both                                                                                                                                                           \\
-        \hline
-        Backbone LR Multiplier                                                   &
-        Uniform                                                                  &
-        [0.1, 0.8]                                                               &
-        Both                                                                                                                                                           \\
-        \hline
-        Small Module LR Multiplier                                               &
-        Uniform                                                                  &
-        [1.0, 2.0]                                                               &
-        Both                                                                                                                                                           \\
-        \hline
-        Fundus Transformer Backbone                                              &
-        Categorical                                                              &
-        \makecell[l]{\texttt{vit\_tiny}, \texttt{vit\_small}, \texttt{deit\_tiny},                                                                                     \\
-        \texttt{swin\_tiny}, \texttt{coatnet\_0}}                                &
-        Both                                                                                                                                                           \\
-        \hline
-        OCT Transformer Backbone                                                 &
-        Categorical                                                              &
-        \makecell[l]{\texttt{vit\_tiny}, \texttt{vit\_small}, \texttt{deit\_tiny},                                                                                     \\
-        \texttt{swin\_tiny}, \texttt{coatnet\_0}}                                &
-        Both                                                                                                                                                           \\
-        \hline
-        MIL Attention Temperature                                                &
-        Categorical                                                              &
-        \{0.8, 1.0, 1.2\}                                                        &
-        Both                                                                                                                                                           \\
-        \hline
-        Sampling Strategy                                                        &
-        Categorical                                                              &
-        \{Balanced, Unbalanced\}                                                 &
-        Multiclass                                                                                                                                                     \\
-        \hline
-        Sampling Weight Exponent ($\beta$)                                       &
-        Uniform                                                                  &
-        [0.9990, 0.9999]                                                         &
-        Multiclass                                                                                                                                                     \\
-        \hline
-        Multiclass Loss Type                                                     &
-        Categorical                                                              &
-        \{\texttt{CE}, \texttt{Focal}, \texttt{BalancedSoftmax}, \texttt{LDAM}\} &
-        Multiclass                                                                                                                                                     \\
-        \hline
-        Focal Loss $\gamma$                                                      &
-        Uniform                                                                  &
-        [2.0, 3.5]                                                               &
-        Multiclass                                                                                                                                                     \\
-        \hline
-        Focal Weight Dampening                                                   &
-        Uniform                                                                  &
-        [0.3, 0.7]                                                               &
-        Multiclass                                                                                                                                                     \\
-        \hline
-        EMA Weight Averaging                                                     &
-        Categorical                                                              &
-        \{True, False\}                                                          &
-        Multiclass                                                                                                                                                     \\
-        \hline
-        SWA Start Ratio                                                          &
-        Uniform                                                                  &
-        [0.3, 0.7]                                                               &
-        Multiclass                                                                                                                                                     \\
-        \hline
-    \end{tabular}
-\end{table*}
-
-\subsubsection{Training Strategy and Loss Functions}
-\label{subsubsec:training_losses}
-
-The training strategy is designed to support both binary glaucoma screening and multiclass glaucoma grading within a unified optimization framework, while accounting for differences in class distribution, decision complexity, and convergence behavior. Across all experiments, models are trained using supervised learning with task-specific loss functions, regularization strategies, and sampling mechanisms selected to promote stable optimization and robust generalization under limited data availability.
-
-\paragraph{Binary glaucoma screening}
-Glaucoma screening is formulated as a binary classification problem distinguishing glaucomatous from non-glaucomatous eyes. As the binary protocol uses a balanced dataset, standard mini-batch sampling is employed. The classifier produces a single logit $\hat{y}_i$ per sample, and optimization is performed using a Label-Smoothed Binary Cross-Entropy loss to mitigate early overconfidence as \eqrefp{eq:binary-loss}:
-\begin{equation}
-    \mathcal{L}_{\text{bin}} =
-    -\frac{1}{N}\sum_{i=1}^{N}
-    \Big[
-        \tilde{y}_i \log \sigma(\hat{y}_i)
-        +
-        (1-\tilde{y}_i)\log \bigl(1-\sigma(\hat{y}_i)\bigr)
-        \Big],
-    \label{eq:binary-loss}
-\end{equation}
-where $\sigma(\cdot)$ denotes the sigmoid function. The smoothed target $\tilde{y}_i$ is defined as \eqrefp{eq:label-smooth}:
-\begin{equation}
-    \tilde{y}_i = (1-\epsilon)y_i + \epsilon \cdot 0.5,
-    \label{eq:label-smooth}
-\end{equation}
-with smoothing coefficient $\epsilon$. To preserve discriminative sharpness at convergence, $\epsilon$ is decayed to zero after the early training phase, allowing the model to transition from regularized learning to confident decision-making.
-
-
-\paragraph{Multiclass glaucoma grading}
-Glaucoma grading is formulated as a multiclass classification problem with ordinal severity categories (non-glaucoma, early, and mid-advanced). The grading dataset exhibits class imbalance with an approximate ratio of 50:26:24, motivating the use of imbalance-aware training strategies. During optimization, a weighted random sampling scheme is optionally applied, where sample selection probabilities are inversely proportional to class frequencies and controlled by a smoothing exponent to prevent excessive oversampling of minority classes.
-
-Based on hyperparameter optimization results, Focal Loss is adopted as the primary objective for multiclass grading, as it demonstrated superior convergence behavior and improved discrimination of minority severity classes. Given predicted class probabilities $p_{i,c}$ obtained via softmax and one-hot encoded labels $y_{i,c}$, the Focal Loss is defined as \eqrefp{eq:focal-loss}:
-\begin{equation}
-    \mathcal{L}_{\text{focal}} =
-    -\frac{1}{N}\sum_{i=1}^{N}\sum_{c=1}^{C}
-    \alpha_c\,
-    (1 - p_{i,c})^{\gamma}\,
-    y_{i,c}\,\log(p_{i,c}),
-    \label{eq:focal-loss}
-\end{equation}
-where $C=3$ denotes the number of grading classes, $\gamma$ is the focusing parameter controlling the emphasis on hard-to-classify samples, and $\alpha_c$ are class-specific weighting coefficients. To avoid overly aggressive bias toward minority classes, focal weights are dampened through constrained $\alpha_c$ scaling, as determined during hyperparameter optimization.
-
-Given the limited scale of publicly available multimodal glaucoma datasets, particular care was taken to ensure that transformer-based architectures remained data-efficient and resistant to overfitting. This was achieved through the use of compact vision transformer backbones, staged fine-tuning with frozen encoders, aggressive yet controlled data augmentation, differential learning rates, and early stopping. In addition, imbalance-aware sampling and task-aligned regularization were employed to stabilize optimization under both binary and multiclass settings. These design choices enable transformer models to effectively learn discriminative multimodal representations even under low-data regimes, while preserving architectural flexibility for cross-modal interaction.
-
-\paragraph{Cross-validation for robustness analysis}
-To evaluate the robustness and stability of the proposed framework under limited data conditions, both binary glaucoma screening and multiclass glaucoma grading protocols are additionally assessed using stratified five-fold cross-validation. In this setup, the original training and validation splits are merged and partitioned into five-folds while preserving the class distribution. For each iteration, models are trained on four folds and evaluated on the remaining fold using the same loss formulation and optimization strategy described above. Because both diagnostic tasks share a consistent architectural and training design, this cross-validation protocol enables a controlled comparison of fusion strategies under varying data partitions, providing further insight into the generalization behavior and robustness of the proposed multimodal framework.
-
-\paragraph{Optimization and regularization}
-For both diagnostic protocols, optimization is performed using the AdamW optimizer with differential learning rates applied to pretrained backbone encoders and newly initialized layers. Training schedules incorporate linear warm-up, staged backbone unfreezing, and optional use of exponential moving average (EMA) or stochastic weight averaging (SWA) to improve generalization stability. Gradient clipping is applied when necessary to prevent instability under high regularization or imbalance-aware sampling.
-
-Early stopping based on validation performance is consistently employed to reduce overfitting. While the loss formulations and sampling strategies differ between glaucoma screening and grading, the underlying architectural design remains unchanged, enabling fair and controlled comparison of multimodal fusion strategies across diagnostic objectives.
-
-
-\subsubsection{Post-hoc Calibration}
-\label{subsubsec:posthoc_calibration}
-
-Following supervised training, a unified post-hoc calibration stage is applied to refine predictive confidence for both glaucoma screening and glaucoma grading. Calibration is performed using temperature scaling, which rescales model logits prior to probability normalization without altering the learned decision boundaries. Given a logit vector $\mathbf{z}$, calibrated class probabilities are computed as \eqrefp{eq:temp-scale}:
-\begin{equation}
-    \mathbf{p}^{\text{cal}} =
-    \mathrm{softmax}\!\left(\frac{\mathbf{z}}{\tau}\right),
-    \label{eq:temp-scale}
-\end{equation}
-where $\tau>0$ is a single learnable temperature parameter optimized on the validation set using LBFGS to minimize cross-entropy loss. This formulation applies identically to binary and multiclass settings, with binary logits treated as a two-class special case. Temperature scaling primarily reduces overconfidence while preserving relative class ordering, thereby supporting reliable downstream decision-making.
-
-Following probability calibration, decision thresholds are optimized using Youden’s $J$ statistic to balance sensitivity and specificity. For glaucoma screening, a single operating threshold $\tau^{*}$ is selected on the validation set by maximizing \eqrefp{eq:youden-binary},
-\begin{equation}
-    J(\tau) = \mathrm{Sensitivity}(\tau) + \mathrm{Specificity}(\tau) - 1,
-    \label{eq:youden-binary}
-\end{equation}
-which is equivalent to identifying the optimal point on the receiver operating characteristic curve.
-
-For multiclass glaucoma grading, threshold optimization is extended to a per-class formulation. For each class $c$, an independent confidence threshold $\tau_c$ is selected by maximizing a class-wise Youden statistic \eqrefp{eq:youden-multiclass}:
-\begin{equation}
-    J_c(\tau_c) =
-    \mathrm{Sensitivity}_c(\tau_c) + \mathrm{Specificity}_c(\tau_c) - 1.
-    \label{eq:youden-multiclass}
-\end{equation}
-During inference, a class prediction is accepted only if the calibrated probability satisfies $p^{\text{cal}}(y=c) \ge \tau_c$; otherwise, the prediction is flagged as uncertain. This per-class thresholding strategy generalizes the binary decision rule to multiclass settings, enabling flexible control over class-specific decision boundaries and reducing confidently incorrect predictions.
-
-Overall, post-hoc calibration is decoupled from model training and applied uniformly across fusion strategies. Temperature scaling and Youden-based threshold optimization provide a consistent and principled inference mechanism for both glaucoma screening and grading, improving probability reliability without increasing model complexity.
-
-
-\subsubsection{Inference Procedure}
-\label{subsubsec:inference}
-
-For inference, the best-performing calibrated model checkpoint is reloaded together with its associated calibration parameters and applied to the held-out test set. All test samples undergo the same deterministic preprocessing pipeline as used during training, excluding stochastic augmentations.
-
-For glaucoma screening, inference produces calibrated probabilities and binary predictions using the optimized decision threshold described in Section~\ref{subsubsec:posthoc_calibration}. Performance is evaluated using standard screening metrics, including accuracy, sensitivity, specificity, F1-score, area under the ROC curve (AUC), and Brier score\eqrefp{eq:brier}, which quantifies probabilistic calibration quality.
-\begin{equation}
-    \mathrm{Brier} = \frac{1}{N}\sum_{i=1}^{N} (\hat{p}_i - y_i)^2.
-    \label{eq:brier}
-\end{equation}
-
-For glaucoma grading, inference is performed using calibrated multiclass probabilities. Test-time augmentation (TTA) is applied by averaging predictions across multiple deterministic transformations to improve stability under limited data. Final class predictions follow the calibrated, per-class thresholding strategy described earlier. Grading performance is primarily assessed using Quadratically Weighted Cohen’s Kappa (QWK), defined as \eqrefp{eq:qwk}:
-\begin{equation}
-    \kappa_w =
-    1 -
-    \frac{\sum_{i,j} w_{ij} O_{ij}}{\sum_{i,j} w_{ij} E_{ij}},
-    \label{eq:qwk}
-\end{equation}
-where $O_{ij}$ and $E_{ij}$ denote observed and expected agreement matrices, and $w_{ij}$ are quadratic weights penalizing distant ordinal disagreements.
-
-To quantify statistical uncertainty in multiclass performance, bootstrap resampling is applied on the test set to estimate confidence intervals for QWK and macro-averaged metrics. This procedure provides robust uncertainty estimates without retraining the model, supporting reliable interpretation of grading results.
-
-
-\subsection{Explainable AI Approach}
-\label{subsec:xai}
-
-Transparent and interpretable model behavior is essential for clinical adoption of automated glaucoma analysis systems. To support qualitative validation and clinical trust, we employ a lightweight explainable artificial intelligence (XAI) workflow based on Gradient-weighted Class Activation Mapping (Grad-CAM) to generate visual attributions for both fundus and OCT modalities. These explanations highlight image regions that most strongly influence the model’s predictions and are used exclusively for post-hoc analysis.
-
-For the fundus modality, Grad-CAM is applied to feature maps from a late-stage convolutional or transformer block within the fundus backbone. Given a target class $c$, the channel importance weights $\alpha_k^c$ are computed by global average pooling the gradients of the class score $y^c$ with respect to the activation maps $A^k$ \eqrefp{eq:gradcam-weight}:
-\begin{equation}
-    \alpha_k^c = \frac{1}{Z} \sum_i \sum_j \frac{\partial y^c}{\partial A_{ij}^k},
-    \label{eq:gradcam-weight}
-\end{equation}
-where $Z$ denotes the total number of spatial locations in the feature map. The resulting Grad-CAM heatmap is obtained as a weighted combination of activation maps followed by a ReLU operation to retain only positive contributions \eqrefp{eq:gradcam-hmap}:
-\begin{equation}
-    L_{\text{Grad-CAM}}^c = \mathrm{ReLU}\Big( \sum_k \alpha_k^c A^k \Big),
-    \label{eq:gradcam-hmap}
-\end{equation}
-The heatmap is subsequently upsampled and overlaid on the original fundus image, enabling visualization of anatomically relevant regions such as the optic disc and surrounding retinal structures.
-
-Explainability for OCT volumes is achieved through a two-stage strategy that combines inter-slice importance estimation with intra-slice spatial localization. First, the attention weights produced by the Multiple Instance Learning (MIL) pooling layer provide an inherent measure of slice-level diagnostic relevance. The attention weight assigned to slice $s$ in sample $i$ is given by \eqrefp{eq:mil-attn-journal}:
-\begin{equation}
-    a_{i,s} = \frac{\exp(u_{i,s})}{\sum_t \exp(u_{i,t})},
-    \label{eq:mil-attn-journal}
-\end{equation}
-where $u_{i,s}$ denotes the learned scalar score for slice $s$. Slices with the highest attention weights are selected as the most informative contributors to the final prediction. Subsequently, Grad-CAM is applied independently to these selected B-scans to localize salient retinal regions within each slice.
-
-This combined inter-slice and intra-slice explanation strategy provides a comprehensive and interpretable view of the model’s decision process for volumetric OCT data, supporting qualitative assessment of multimodal predictions for both glaucoma screening and grading tasks.
-
-\subsection{Deployment and Web-Based Inference Interface}
-To facilitate interactive access to the best-performing glaucoma grading model, we developed \textit{MultiGlaucoFormer}, a lightweight web-based inference interface implemented using the Gradio framework. The application accepts a paired color fundus photograph and OCT volume as input and returns the predicted glaucoma severity class together with explainability outputs. In particular, the interface visualizes Grad-CAM heatmaps over the fundus image and over the three most highly weighted OCT B-scan slices identified by the OCT attention module, enabling qualitative inspection of the image regions that most strongly influence the final grading decision. The interface is intended to support research demonstration and model interpretation rather than direct clinical use.
-
-The \textit{MultiGlaucoFormer} application is deployed online and hosts the best trained Deep Fusion model for multiclass glaucoma grading ~\cite{multiglaucoformer_webapp}. During inference, the uploaded multimodal inputs undergo the same deterministic preprocessing procedure used during model evaluation, after which the calibrated model produces the final severity prediction and corresponding visual explanations. As illustrated in Fig.~\ref{fig:multiglaucoformer_gui}, the graphical user interface includes dedicated upload panels for fundus and OCT inputs, a prediction output section, and Grad-CAM visualization panels for the fundus image and the three highest-attention OCT slices, providing an accessible demonstration of the proposed multimodal grading framework.
+Representative fundus and OCT inputs are shown in Figure~\ref{fig:raw-fundus-oct}. The fundus photograph provides global retinal, optic disc, and vascular context, whereas the OCT B-scan presents a cross-sectional view of retinal structures.
 
 \begin{figure}[!t]
     \centering
-    \includegraphics[width=\columnwidth]{images/web-app-gui.png}
-    \caption{GUI of the deployed \textit{MultiGlaucoFormer} web application, showing multimodal input, grading output, and Grad-CAM visualizations.}
-    \label{fig:multiglaucoformer_gui}
+    \includegraphics[width=\columnwidth]{images/raw-fundus-oct.png}
+    \caption{Representative paired inputs from the GAMMA dataset: a color fundus photograph and a corresponding OCT B-scan.}
+    \label{fig:raw-fundus-oct}
 \end{figure}
+
+Table~\ref{tab:dataset_summary} summarizes the class distributions used for binary screening and multiclass grading. No samples were excluded from the experiments.
+
+\begin{table}[!t]
+    \centering
+    \caption{Class distributions for binary glaucoma screening and three-class glaucoma grading using the official GAMMA dataset splits.}
+    \label{tab:dataset_summary}
+    \small
+    \setlength{\tabcolsep}{4pt}
+    \begin{tabular}{lcccc}
+        \hline
+        \textbf{Task and class} &
+        \textbf{Training}       &
+        \textbf{Validation}     &
+        \textbf{Test}           &
+        \textbf{Total}                               \\
+        \hline
+        Screening: negative     & 50 & 50 & 51 & 151 \\
+        Screening: positive     & 50 & 50 & 49 & 149 \\
+        \hline
+        Grading: normal         & 50 & 50 & 51 & 151 \\
+        Grading: early          & 26 & 26 & 25 & 77  \\
+        Grading: mid-advanced   & 24 & 24 & 24 & 72  \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\subsubsection{Binary Glaucoma Screening}
+\label{subsubsec:binary_screening}
+
+For binary glaucoma screening, the original severity labels are mapped into glaucomatous and non-glaucomatous categories. Normal samples are assigned to the negative class, while early and mid-advanced glaucoma samples are combined into the positive class. This formulation represents a referral-oriented screening objective in which eyes showing any labelled glaucoma severity are separated from normal eyes.
+
+The resulting binary dataset is approximately balanced, comprising 151 negative and 149 positive samples. Consequently, conventional mini-batch sampling is used as the default for screening, while sensitivity, specificity, AUC-ROC, and AUC-PR are included to characterize discrimination across clinically relevant operating conditions.
+
+\subsubsection{Multiclass Glaucoma Grading}
+\label{subsubsec:multiclass_grading}
+
+For glaucoma grading, the original GAMMA labels are retained, producing a three-class problem consisting of normal, early glaucoma, and mid-advanced glaucoma. The classes are ordinal because misclassification between distant severity categories is more consequential than confusion between adjacent categories.
+
+The grading data are imbalanced, with normal samples accounting for approximately half of each official split. This imbalance motivates the evaluation of sampling- and loss-level correction strategies during model selection. Quadratically weighted Cohen's kappa (QWK) is used as the primary grading metric because it accounts for both chance agreement and the ordinal distance between the true and predicted classes. Accuracy and macro-averaged F1-score are used as complementary measures.
+
+\subsection{Multimodal Image Preprocessing}
+\label{subsec:preprocessing}
+
+Consistent preprocessing is important for stable optimization and reproducible evaluation of multimodal medical image models~\cite{virbukaite2023impact,sun2025hybrid}. The proposed pipeline applies modality-specific operations to preserve diagnostically relevant fundus and OCT information while reducing non-informative background and computational overhead. Deterministic preprocessing is performed offline and cached, whereas stochastic augmentation and final tensor normalization are performed online during training.
+
+Detailed pseudocode for fundus field-of-view extraction, OCT region-of-interest selection, and foveal-center estimation is provided in Supplementary Algorithms~S1--S3.
+
+\subsubsection{Fundus Image Preprocessing}
+\label{subsubsec:fundus_preprocessing}
+
+Each fundus photograph is first converted to grayscale for field-of-view detection. A binary foreground mask is generated using an intensity threshold, after which the largest external contour is identified as the retinal field. A square region centered on the contour centroid is extracted using the maximum dimension of its bounding box. This procedure removes non-informative black borders while preserving the complete retinal field rather than restricting the input to a manually localized optic-disc crop.
+
+Retaining the complete retinal field allows the model to use both optic-disc-related evidence and wider contextual information, including parapapillary and vascular patterns. If the retinal contour cannot be identified, the original image is resized without cropping as a deterministic fallback. The extracted region is resized to $224\times224$ pixels to match the standard input size of the pretrained backbone candidates.
+
+\subsubsection{OCT Preprocessing and Slice Selection}
+\label{subsubsec:oct_preprocessing}
+
+Each GAMMA OCT volume contains 256 B-scans. Processing the complete volume with a dense three-dimensional model would create a high-dimensional learning problem relative to the 300 available paired samples. The framework therefore selects a compact subset of B-scans and aggregates their diagnostic evidence through OCT-MIL.
+
+The candidate B-scans are selected from a symmetric window centered on an automatically estimated foveal slice. Foveal-center estimation is based on the vitreous--retina interface, with the selected center corresponding to the candidate slice exhibiting the maximum estimated interface arc length within a local search region. The candidate slice counts are treated as hyperparameters, enabling model selection to balance anatomical coverage, computational cost, and validation performance. The investigated slice counts are reported in Supplementary Table~S1.
+
+For each selected B-scan, a weighted gradient-based procedure identifies a square high-information region containing prominent retinal-layer boundaries. The method applies denoising, estimates image-gradient magnitude, and evaluates candidate square windows along the longer image dimension using a center-weighted gradient score. The highest-scoring region is extracted and resized to $224\times224$ pixels. This reduces background content and limits the geometric distortion that would otherwise result from directly resizing the complete non-square B-scan.
+
+\subsubsection{Data Augmentation and Normalization}
+\label{subsubsec:augmentation_normalization}
+
+Stochastic augmentation is applied only to the training data. The augmentation pipeline includes horizontal flipping, mild rotation, affine transformation, color jittering for fundus photographs, and random erasing for both modalities. The transformation ranges are constrained to avoid severe deformations that would alter retinal anatomy. Because the fundus photograph and selected OCT B-scans represent different anatomical views rather than registered pixel-level views, modality-appropriate augmentations are applied without assuming direct spatial correspondence between their pixels.
+
+Fundus photographs are normalized using ImageNet channel-wise statistics to remain compatible with ImageNet-pretrained model initialization. OCT B-scans are normalized using z-score normalization based on training-data intensity statistics. Validation and test samples undergo only deterministic cropping, resizing, and normalization, without stochastic augmentation.
+
+The offline stage performs computationally intensive deterministic operations, including fundus cropping, OCT slice selection, OCT region extraction, and resizing. The resulting images are cached to reduce repeated CPU processing. The online data loader subsequently performs stochastic augmentation, channel conversion, normalization, and tensor construction. This separation ensures consistent anatomical framing across fusion strategies while reducing training overhead.
+
+\subsection{Transformer-Based Multimodal Fusion Framework}
+\label{subsec:fusion_framework}
+
+The proposed framework evaluates three levels of multimodal interaction: input-level Early Fusion, latent-level Deep Fusion, and decision-level Late Fusion. Each strategy receives the same paired fundus and OCT information and uses the shared OCT-MIL principle described below. The primary difference is the stage at which information from the two modalities is combined.
+
+The architectures are designed to support multiple compact transformer-family backbones, including ViT, DeiT, Swin Transformer, and CoAtNet. ImageNet-pretrained weights are used where available. The final classifier produces one logit for binary screening or three logits for glaucoma grading.
+
+\subsubsection{OCT Multiple-Instance Learning}
+\label{subsubsec:oct_mil}
+
+An OCT volume is represented as a collection of selected B-scans rather than as a single dense three-dimensional tensor. Each selected OCT B-scan is therefore treated as an instance belonging to one eye-level bag. A shared OCT slice encoder maps the $s$th B-scan of sample $i$ to an embedding $\mathbf{e}_{i,s}^{O}$. Because pretrained image encoders expect three-channel inputs, each grayscale OCT slice is duplicated across three channels before encoding.
+
+The diagnostic relevance of each slice is estimated using a trainable attention mechanism:
+
+\begin{equation}
+    a_{i,s} =
+    \frac{
+        \exp\!\left(
+        \mathbf{v}^{\top}
+        \sigma\!\left(\mathbf{W}\mathbf{e}_{i,s}^{O}\right)
+        \right)
+    }{
+        \sum_{t=1}^{S}
+        \exp\!\left(
+        \mathbf{v}^{\top}
+        \sigma\!\left(\mathbf{W}\mathbf{e}_{i,t}^{O}\right)
+        \right)
+    },
+    \qquad
+    \sum_{s=1}^{S}a_{i,s}=1,
+    \label{eq:mil_attention}
+\end{equation}
+
+where $\mathbf{W}$ and $\mathbf{v}$ are trainable parameters, $\sigma(\cdot)$ denotes a nonlinear activation, and $S$ is the selected number of B-scans. For Deep and Late Fusion, the eye-level OCT embedding is computed as
+
+\begin{equation}
+    \mathbf{e}_{i}^{O}
+    =
+    \sum_{s=1}^{S}
+    a_{i,s}\mathbf{e}_{i,s}^{O}.
+    \label{eq:mil_embedding}
+\end{equation}
+
+For Early Fusion, the attention values are instead used to construct an attention-weighted spatial OCT summary:
+
+\begin{equation}
+    \mathbf{O}_{i}^{\mathrm{agg}}(p,q)
+    =
+    \sum_{s=1}^{S}
+    a_{i,s}\mathbf{O}_{i,s}(p,q),
+    \label{eq:mil_spatial}
+\end{equation}
+
+where $\mathbf{O}_{i,s}(p,q)$ denotes the intensity at spatial location $(p,q)$ in the preprocessed $s$th B-scan. OCT-MIL reduces the dimensionality of the volume while preserving a learnable estimate of inter-slice relevance. The learned attention values are also used during post-hoc explainability analysis to identify the B-scans contributing most strongly to each prediction.
+
+\subsubsection{Early Fusion}
+\label{subsubsec:early_fusion}
+
+Early Fusion combines fundus and OCT information before high-level feature extraction. The architecture is shown in Figure~\ref{early-fusion-architecture}. For sample $i$, let the preprocessed fundus photograph be $\mathbf{F}_{i}\in\mathbb{R}^{3\times H\times W}$ and the attention-weighted OCT summary produced by Equation~\eqref{eq:mil_spatial} be $\mathbf{O}_{i}^{\mathrm{agg}}\in\mathbb{R}^{1\times H\times W}$.
+
+\begin{figure*}[!t]
+    \centering
+    \includegraphics[width=\textwidth]{images/early-fusion-architecture.png}
+    \caption{Early Fusion architecture. Selected OCT B-scans are aggregated using OCT-MIL, concatenated with the fundus photograph at the input level, and processed by a shared transformer-family encoder. FiLM modulation is included as an optional model-selection component.}
+    \label{early-fusion-architecture}
+\end{figure*}
+
+The two inputs are concatenated channel-wise to form
+
+\begin{equation}
+    \mathbf{X}_{i}
+    =
+    \left[
+    \mathbf{F}_{i}
+    \,\|\,
+    \mathbf{O}_{i}^{\mathrm{agg}}
+    \right]
+    \in\mathbb{R}^{4\times H\times W}.
+    \label{eq:early_concat}
+\end{equation}
+
+A $1\times1$ convolutional adapter followed by normalization projects the four-channel input into a three-channel representation compatible with the pretrained image encoders:
+
+\begin{equation}
+    \hat{\mathbf{X}}_{i}
+    =
+    \mathcal{A}\!\left(\mathbf{X}_{i}\right)
+    \in\mathbb{R}^{3\times H\times W}.
+    \label{eq:early_adapter}
+\end{equation}
+
+An optional FiLM module is used to recalibrate the adapted multimodal representation using learned channel-wise scale and shift parameters~\cite{perez2018film}. The bounded modulation is expressed as
+
+\begin{equation}
+    \hat{\mathbf{X}}_{i}^{\mathrm{film}}(k,p,q)
+    =
+    \left(1+0.1\tanh(\gamma_{i,k})\right)
+    \hat{\mathbf{X}}_{i}(k,p,q)
+    +
+    0.1\tanh(\beta_{i,k}),
+    \label{eq:early_film}
+\end{equation}
+
+where $\gamma_{i,k}$ and $\beta_{i,k}$ are generated from a global descriptor of the multimodal input. Bounding the modulation causes the module to behave near an identity transformation at initialization and reduces unstable changes to pretrained input representations. The inclusion of FiLM is determined through validation-based hyperparameter selection rather than being fixed across all tasks.
+
+The adapted input is processed by a shared transformer-family encoder to obtain a multimodal representation $\mathbf{z}_{i}$. A regularized multilayer classifier maps this representation to either one screening logit or a three-dimensional grading logit vector. Early Fusion permits shared representation learning from the beginning of the network, but it also requires a single encoder to process fundus and OCT information with substantially different visual characteristics.
+
+\subsubsection{Deep Fusion}
+\label{subsubsec:deep_fusion}
+
+Deep Fusion preserves modality-specific feature extraction and combines fundus and OCT representations in a shared latent space. As illustrated in Figure~\ref{deep-fusion-architecture}, the fundus photograph and selected OCT slices are passed through separate encoders before multimodal integration.
+
+\begin{figure*}[!t]
+    \centering
+    \includegraphics[width=\textwidth]{images/deep-fusion-architecture.png}
+    \caption{Deep Fusion architecture. Fundus and OCT information are encoded independently and integrated at the latent representation level. Modality-token attention and gated feature rebalancing are optional components selected according to validation performance.}
+    \label{deep-fusion-architecture}
+\end{figure*}
+
+The fundus encoder produces
+
+\begin{equation}
+    \mathbf{e}_{i}^{F}
+    =
+    \operatorname{Enc}_{F}\!\left(\mathbf{F}_{i}\right)
+    \in \mathbb{R}^{D_F},
+    \label{eq:fundus_encoder}
+\end{equation}
+
+while the shared OCT slice encoder and OCT-MIL module produce the eye-level OCT representation $\mathbf{e}_{i}^{O}\in\mathbb{R}^{D_O}$ according to Equations~\eqref{eq:mil_attention} and~\eqref{eq:mil_embedding}. The fundus and OCT embeddings are projected into a common $D$-dimensional latent space:
+
+\begin{equation}
+    \tilde{\mathbf{e}}_{i}^{F}
+    =
+    \mathbf{P}_{F}\mathbf{e}_{i}^{F},
+    \qquad
+    \tilde{\mathbf{e}}_{i}^{O}
+    =
+    \mathbf{P}_{O}\mathbf{e}_{i}^{O},
+    \label{eq:deep_projection}
+\end{equation}
+
+where $\mathbf{P}_{F}$ and $\mathbf{P}_{O}$ are learned projection matrices.
+
+The base Deep Fusion representation is produced by concatenating the projected modality embeddings and mapping them into a compact shared representation:
+
+\begin{equation}
+    \mathbf{h}_{i}
+    =
+    \sigma\!\left(
+    \mathbf{W}_{f}
+    \left[
+        \tilde{\mathbf{e}}_{i}^{F};
+        \tilde{\mathbf{e}}_{i}^{O}
+        \right]
+    +
+    \mathbf{b}_{f}
+    \right),
+    \label{eq:deep_concat}
+\end{equation}
+
+where $\sigma(\cdot)$ denotes a nonlinear activation. This formulation enables modality-specific representation learning while permitting direct interaction between fundus and OCT information before classification.
+
+An optional modality-token interaction module may be applied to increase cross-modal interaction. A learnable classification token is combined with the projected fundus and OCT embeddings to form
+
+\begin{equation}
+    \mathbf{T}_{i}
+    =
+    \left[
+        \mathbf{c}_{0}
+        \,\|\,
+        \tilde{\mathbf{e}}_{i}^{F}
+        \,\|\,
+        \tilde{\mathbf{e}}_{i}^{O}
+        \right]
+    \in\mathbb{R}^{3\times D}.
+    \label{eq:deep_tokens}
+\end{equation}
+
+Multi-head self-attention is then applied to the short modality-token sequence:
+
+\begin{equation}
+    \hat{\mathbf{T}}_{i}
+    =
+    \operatorname{MHA}
+    \left(
+    \mathbf{T}_{i},
+    \mathbf{T}_{i},
+    \mathbf{T}_{i}
+    \right),
+    \qquad
+    \mathbf{h}_{i}
+    =
+    \hat{\mathbf{T}}_{i}[0].
+    \label{eq:deep_attention}
+\end{equation}
+
+Although this component facilitates cross-modal exchange, it is implemented as self-attention over a compact modality-token sequence rather than as dense attention between all fundus and OCT image tokens. This limits its computational and parameter overhead.
+
+An optional gating module may further reweight the fused representation using information from both modalities~\cite{song2022cross}:
+
+\begin{equation}
+    \mathbf{g}_{i}
+    =
+    \operatorname{sigmoid}
+    \left(
+    \mathbf{W}_{g}
+    \left[
+        \tilde{\mathbf{e}}_{i}^{F};
+        \tilde{\mathbf{e}}_{i}^{O}
+        \right]
+    +
+    \mathbf{b}_{g}
+    \right),
+    \qquad
+    \mathbf{h}_{i}^{\prime}
+    =
+    \mathbf{g}_{i}\odot\mathbf{h}_{i}.
+    \label{eq:deep_gate}
+\end{equation}
+
+The inclusion of modality-token attention and gated rebalancing is treated as a validation-based model-selection choice. Consequently, the selected screening and grading models may use different Deep Fusion variants if additional interaction modules do not improve validation performance for both tasks. This maintains a common latent-fusion principle while avoiding unnecessary complexity under the limited-data setting.
+
+The resulting representation is passed through a regularized classifier:
+
+\begin{equation}
+    \hat{\mathbf{y}}_{i}
+    =
+    \mathbf{W}_{c}
+    \operatorname{Dropout}
+    \left(
+    \sigma\!\left(
+        \mathbf{W}_{h}\mathbf{h}_{i}^{\prime}
+        +
+        \mathbf{b}_{h}
+        \right)
+    \right)
+    +
+    \mathbf{b}_{c},
+    \label{eq:deep_classifier}
+\end{equation}
+
+where $\hat{\mathbf{y}}_{i}$ contains one logit for screening or three logits for grading. When gating is not selected, $\mathbf{h}_{i}^{\prime}$ is replaced by the ungated fused representation $\mathbf{h}_{i}$.
+
+\subsubsection{Late Fusion}
+\label{subsubsec:late_fusion}
+
+Late Fusion combines modality-specific predictions at the decision level. As shown in Figure~\ref{late-fusion-architecture}, the fundus and OCT branches are trained to generate separate task-specific logits before their outputs are combined.
+
+\begin{figure*}[!t]
+    \centering
+    \includegraphics[width=\textwidth]{images/late-fusion-architecture.png}
+    \caption{Late Fusion architecture. Fundus and OCT branches generate independent predictions that are combined using optional modality-specific temperature calibration and confidence-aware logit weighting.}
+    \label{late-fusion-architecture}
+\end{figure*}
+
+The fundus encoder and OCT-MIL branch produce modality-specific representations $\mathbf{e}_{i}^{F}$ and $\mathbf{e}_{i}^{O}$. Separate classifier heads map these representations to logits:
+
+\begin{equation}
+    \boldsymbol{\ell}_{i}^{F}
+    =
+    \operatorname{Head}_{F}\!\left(\mathbf{e}_{i}^{F}\right),
+    \qquad
+    \boldsymbol{\ell}_{i}^{O}
+    =
+    \operatorname{Head}_{O}\!\left(\mathbf{e}_{i}^{O}\right).
+    \label{eq:late_logits}
+\end{equation}
+
+The logits are scalar-valued for binary screening and three-dimensional for grading. Optional modality-specific temperature scaling is applied before fusion:
+
+\begin{equation}
+    \tilde{\boldsymbol{\ell}}_{i}^{F}
+    =
+    \frac{\boldsymbol{\ell}_{i}^{F}}{\tau_{F}},
+    \qquad
+    \tilde{\boldsymbol{\ell}}_{i}^{O}
+    =
+    \frac{\boldsymbol{\ell}_{i}^{O}}{\tau_{O}},
+    \qquad
+    \tau_F,\tau_O>0.
+    \label{eq:late_temperature}
+\end{equation}
+
+The modality-specific temperatures in Equation~\eqref{eq:late_temperature} are internal components of Late Fusion and are distinct from the post-hoc calibration of the final fused output described in Section~\ref{subsec:calibration_inference}.
+
+When confidence-aware fusion is enabled, a lightweight network estimates normalized sample-specific modality weights:
+
+\begin{equation}
+    \left[
+        c_{i}^{F},
+        c_{i}^{O}
+        \right]
+    =
+    \operatorname{Softmax}
+    \left(
+    \operatorname{MLP}
+    \left(
+        \mathbf{r}_{i}
+        \right)
+    \right),
+    \qquad
+    c_{i}^{F}+c_{i}^{O}=1,
+    \label{eq:late_confidence}
+\end{equation}
+
+where $\mathbf{r}_{i}$ contains summary statistics derived from the fundus and OCT logits. The final fused logits are
+
+\begin{equation}
+    \hat{\boldsymbol{\ell}}_{i}
+    =
+    c_{i}^{F}\tilde{\boldsymbol{\ell}}_{i}^{F}
+    +
+    c_{i}^{O}\tilde{\boldsymbol{\ell}}_{i}^{O}.
+    \label{eq:late_fusion}
+\end{equation}
+
+When modality-specific calibration and confidence weighting are not selected, $\tau_F=\tau_O=1$ and $c_i^F=c_i^O=0.5$, reducing Equation~\eqref{eq:late_fusion} to arithmetic mean-logit fusion. The inclusion of modality-specific temperature scaling and confidence-aware weighting is determined through validation-based hyperparameter selection. This enables comparison between simple and adaptive decision-level integration without changing the independent modality branches.
+
+\subsection{Model Training and Hyperparameter Optimization}
+\label{subsec:model_training}
+
+All fusion models are trained independently for binary screening and multiclass grading. The general optimization pipeline is shared across tasks, while the loss functions, sampling strategies, output dimensions, and model-selection objectives are adapted to the corresponding diagnostic problem.
+
+\subsubsection{Optimization and Regularization}
+\label{subsubsec:optimization}
+
+ImageNet-pretrained weights are used to initialize the transformer-family encoders where available. Newly introduced projection layers, adapters, fusion modules, and classifier heads are initialized independently and trained for the target task. Training is performed using the AdamW optimizer with separate learning-rate multipliers for pretrained backbones and newly initialized layers.
+
+The optimization schedule includes linear learning-rate warm-up, validation-based early stopping, and optional staged backbone freezing and unfreezing. Differential learning rates allow the pretrained encoders to be updated more conservatively than the fusion and classification modules. Dropout, weight decay, data augmentation, and gradient clipping are used to reduce overfitting and optimization instability. Exponential moving average or stochastic weight averaging is included among the candidate training options for grading and is retained only when selected by validation performance.
+
+The number of OCT B-scans is also optimized rather than fixed across all models. This permits each architecture to balance OCT coverage against computational cost and overfitting risk. The selected number of slices, backbone, regularization settings, and fusion-module configuration for each final model are reported in the Results section.
+
+\subsubsection{Task-Specific Loss Functions}
+\label{subsubsec:loss_functions}
+
+Binary glaucoma screening is optimized using label-smoothed binary cross-entropy. For sample $i$, the smoothed binary target is
+
+\begin{equation}
+    \tilde{y}_{i}
+    =
+    (1-\epsilon)y_{i}
+    +
+    0.5\epsilon,
+    \label{eq:binary_smoothing}
+\end{equation}
+
+where $y_i\in\{0,1\}$ and $\epsilon$ is the smoothing coefficient. Given the predicted screening logit $\hat{y}_{i}$, the loss is
+
+\begin{equation}
+    \mathcal{L}_{\mathrm{bin}}
+    =
+    -\frac{1}{N}
+    \sum_{i=1}^{N}
+    \left[
+        \tilde{y}_{i}\log\sigma(\hat{y}_{i})
+        +
+        \left(1-\tilde{y}_{i}\right)
+        \log\left(1-\sigma(\hat{y}_{i})\right)
+        \right].
+    \label{eq:binary_loss}
+\end{equation}
+
+The smoothing coefficient is reduced during training, allowing stronger regularization during early optimization while permitting sharper decision boundaries during later epochs.
+
+For multiclass grading, the model-selection process evaluates candidate imbalance-aware objectives. The final grading models use focal loss because it provided the selected validation behavior under the imbalanced class distribution. For $C=3$ classes, focal loss is defined as
+
+\begin{equation}
+    \mathcal{L}_{\mathrm{focal}}
+    =
+    -\frac{1}{N}
+    \sum_{i=1}^{N}
+    \sum_{c=1}^{C}
+    \alpha_c
+    \left(1-p_{i,c}\right)^{\gamma}
+    y_{i,c}\log(p_{i,c}),
+    \label{eq:focal_loss}
+\end{equation}
+
+where $p_{i,c}$ is the predicted Softmax probability for class $c$, $y_{i,c}$ is the one-hot target, $\gamma$ controls the emphasis placed on difficult samples, and $\alpha_c$ represents the class-specific weight. The class weights are constrained during optimization to avoid excessive weighting of minority classes.
+
+Weighted random sampling is included as an optional grading strategy. When activated, sample probabilities are derived from inverse class frequencies with smoothing to limit repeated oversampling of minority-class observations. The combination of loss formulation and sampling strategy is selected using validation data.
+
+\subsubsection{Hyperparameter Optimization}
+\label{subsubsec:hyperparameter_optimization}
+
+Hyperparameter optimization is conducted separately for each fusion strategy and diagnostic task using the Optuna framework. For binary glaucoma screening, 50 trials are conducted for each of the Early, Deep, and Late Fusion architectures, resulting in a total of 150 screening trials. For multiclass glaucoma grading, 100 trials are conducted for each fusion architecture, resulting in a total of 300 grading trials. Screening trials are ranked primarily according to validation AUC-ROC. Grading trials are optimized using validation loss, while QWK and macro-F1 are additionally monitored to ensure that model selection is not driven solely by the majority class.
+
+The search space includes the learning rate, weight decay, batch size, backbone architecture, number of OCT B-scans, transformer and classifier dropout, label smoothing, warm-up duration, backbone freezing schedule, fine-tuning learning rate, MIL attention temperature, sampling strategy, grading-loss type, focal-loss parameters, and architecture-specific optional modules. The complete search space is provided in Supplementary Table~S1. The final selected configuration for each fusion strategy is reported in the Results section to connect model configuration with observed performance.
+
+All model selection is performed using the corresponding validation data. The official test labels are not used to choose hyperparameters, optional modules, calibration temperatures, classification thresholds, or training duration.
+
+\subsection{Calibration and Inference}
+\label{subsec:calibration_inference}
+
+Following supervised training, post-hoc temperature scaling is optionally applied to the final output of each Early, Deep, and Late Fusion model. Its inclusion is determined as part of the validation-based configuration process. This final-output calibration is distinct from the modality-specific temperature scaling used internally by the Late Fusion architecture.
+
+Given a final model-logit vector $\mathbf{z}_{i}$, the calibrated probabilities are computed as
+
+\begin{equation}
+    \mathbf{p}_{i}^{\mathrm{cal}}
+    =
+    \operatorname{Softmax}
+    \left(
+    \frac{\mathbf{z}_{i}}{\tau}
+    \right),
+    \qquad
+    \tau>0,
+    \label{eq:posthoc_temperature}
+\end{equation}
+
+where the scalar temperature $\tau$ is estimated using the validation predictions by minimizing cross-entropy loss. For binary classification, the model output is treated as the corresponding two-class probability formulation. Temperature scaling adjusts the sharpness of the predicted probability distribution without changing the ordering of the output logits.
+
+For screening, a decision threshold is selected using the validation data by maximizing Youden's $J$ statistic:
+
+\begin{equation}
+    J(t)
+    =
+    \operatorname{Sensitivity}(t)
+    +
+    \operatorname{Specificity}(t)
+    -1.
+    \label{eq:youden}
+\end{equation}
+
+The resulting threshold is fixed before evaluation on the official test set.
+
+For glaucoma grading, calibrated class probabilities are interpreted using class-specific confidence thresholds determined exclusively from the validation data. The class with the highest calibrated probability is selected when its corresponding confidence threshold is satisfied. For low-confidence cases in which this threshold is not satisfied, the two classes with the highest calibrated probabilities are considered and the higher-severity class is selected. This ordinal decision rule was fixed using validation data before evaluation of the official test predictions.
+
+At inference time, the selected model checkpoint is loaded together with its preprocessing configuration, selected OCT slice count, calibration parameters, and decision thresholds. Test samples undergo the same deterministic preprocessing used for validation, without random augmentation. Test-time augmentation is applied to every glaucoma grading model using the predefined deterministic transformations. The resulting probability vectors are averaged before post-hoc calibration and application of the validation-derived grading decision rule. Test-time augmentation is not applied to the binary screening models unless otherwise specified.
+
+\subsection{Evaluation Protocol and Statistical Analysis}
+\label{subsec:evaluation_protocol}
+
+\subsubsection{Official Dataset Split}
+\label{subsubsec:official_split}
+
+The primary experiments use the official GAMMA training, validation, and test sets. Models are fitted using the 100-sample training split, while the 100-sample validation split is used for early stopping, hyperparameter selection, optional-module selection, calibration, and decision-threshold estimation. The selected configuration is evaluated on the held-out 100-sample official test set.
+
+The official test set is not used during model optimization or configuration selection. Results from this protocol provide the primary comparison among Early, Deep, and Late Fusion and permit comparison with other GAMMA-based studies that use the official data partition.
+
+\subsubsection{Cross-Validation and Bootstrap Analysis}
+\label{subsubsec:robustness_analysis}
+
+A five-fold robustness analysis is conducted by combining the official training and validation sets, producing a development cohort of 200 paired samples. Stratified five-fold partitioning is then applied while preserving the corresponding binary or multiclass distribution. In each iteration, four folds are used for model fitting and the remaining fold is used as the internal validation set for checkpoint selection and calibration.
+
+Each of the five resulting fold-specific models is subsequently evaluated once on the unchanged official 100-sample test set. The cross-validation results reported in this study are the mean and standard deviation of the official-test metrics obtained from these five independently trained fold models. Thus, the reported cross-validation variability reflects the sensitivity of test performance to different development-set partitions rather than the average of the five internal validation-fold scores.
+
+For glaucoma grading, bootstrap resampling is additionally performed using the final official-test predictions to quantify statistical uncertainty. Test observations and their corresponding predictions are sampled with replacement using 1,000 bootstrap replicates. QWK, accuracy, and macro-averaged performance measures are recalculated for each replicate, and the resulting empirical distributions are used to estimate 95\% confidence intervals. This analysis quantifies uncertainty in the reported test-set performance without retraining the models.
+
+\subsubsection{Evaluation Metrics}
+\label{subsubsec:evaluation_metrics}
+
+Binary screening performance is evaluated using AUC-ROC, AUC-PR, accuracy, sensitivity, specificity, precision, F1-score, and Brier score. AUC-ROC measures ranking performance across decision thresholds, while AUC-PR is included because it emphasizes positive-class retrieval. Sensitivity and specificity characterize performance at the validation-selected operating threshold.
+
+The Brier score evaluates the squared error of predicted probabilities:
+
+\begin{equation}
+    \operatorname{Brier}
+    =
+    \frac{1}{N}
+    \sum_{i=1}^{N}
+    \left(
+    \hat{p}_{i}-y_{i}
+    \right)^2,
+    \label{eq:brier_score}
+\end{equation}
+
+where $\hat{p}_{i}$ is the calibrated probability of glaucoma and $y_i$ is the binary target.
+
+For multiclass grading, QWK is the primary metric because the target categories have an ordinal interpretation. It is defined as
+
+\begin{equation}
+    \kappa_{w}
+    =
+    1-
+    \frac{
+    \sum_{i,j}w_{ij}O_{ij}
+    }{
+    \sum_{i,j}w_{ij}E_{ij}
+    },
+    \label{eq:qwk_metric}
+\end{equation}
+
+where $O_{ij}$ and $E_{ij}$ are the observed and expected agreement matrices and $w_{ij}$ contains quadratic disagreement weights. Accuracy, macro-F1, weighted-F1, class-wise precision, recall, and one-vs-rest AUC are used as complementary measures. Macro-F1 is included to prevent the majority normal class from dominating the reported grading performance.
+
+\subsection{Explainability Analysis}
+\label{subsec:explainability}
+
+Post-hoc explainability analysis is conducted using Grad-CAM and the attention values generated by OCT-MIL. The analysis is intended to support qualitative examination of image regions associated with model predictions and is not treated as evidence of causal or clinically validated reasoning.
+
+For fundus photographs, Grad-CAM is applied to a late-stage feature-producing block of the selected backbone. For target class $c$, the importance of feature channel $k$ is calculated by spatially averaging the gradient of the class score $y^{c}$ with respect to activation map $\mathbf{A}^{k}$:
+
+\begin{equation}
+    \alpha_{k}^{c}
+    =
+    \frac{1}{Z}
+    \sum_{p,q}
+    \frac{\partial y^{c}}
+    {\partial A_{p,q}^{k}},
+    \label{eq:gradcam_weights}
+\end{equation}
+
+where $Z$ is the number of spatial positions. The class activation map is computed as
+
+\begin{equation}
+    \mathbf{L}_{\mathrm{Grad\text{-}CAM}}^{c}
+    =
+    \operatorname{ReLU}
+    \left(
+    \sum_{k}
+    \alpha_{k}^{c}\mathbf{A}^{k}
+    \right).
+    \label{eq:gradcam_map}
+\end{equation}
+
+The resulting map is resized and overlaid on the fundus photograph to visualize the retinal regions most strongly associated with the selected class score.
+
+OCT explanations are generated in two stages. First, the MIL attention values from Equation~\eqref{eq:mil_attention} are used to rank the selected B-scans according to their contribution to the eye-level OCT representation. Second, Grad-CAM is applied to the highest-attention B-scans to identify salient locations within the selected slices. This combination provides both inter-slice importance and intra-slice localization for the OCT modality.
+
+A lightweight web-based research interface, termed \textit{MultiGlaucoFormer}, was also developed to demonstrate paired-input inference and the corresponding fundus and OCT explanation maps~\cite{multiglaucoformer_webapp}. Because the interface has not undergone prospective or clinical validation, its implementation details and graphical user interface are provided in the Supplementary Material and it is not considered part of the clinical evaluation.
 
 
 
