@@ -191,150 +191,115 @@ The main contributions of this study are summarized as follows:
 
 Overall, this work presents a focused multimodal image analysis framework for glaucoma screening and grading, with emphasis on the practical question of how fundus and OCT information should be fused in transformer-based models. By comparing fusion at the input, latent, and decision levels within a unified experimental design, the study provides insight into the strengths and limitations of different multimodal fusion strategies for ophthalmic decision support.
 
-\section{BACKGROUND}
-\label{sec2}
+\section{Related Work}
+\label{sec:related_work}
 
-\subsection{OVERVIEW OF GLAUCOMA}
-\label{subsec21}
+\subsection{Automated glaucoma analysis using fundus and OCT imaging}
+\label{subsec:fundus_oct_glaucoma_analysis}
 
-Glaucoma is a major eye disease that arises when the optic nerve becomes damaged at its head, often as a result of elevated intraocular pressure. The condition typically develops when the drainage of aqueous humor in the anterior chamber is impaired, leading to fluid accumulation and increased pressure within the eye. This elevated pressure damages the retinal ganglion cells and the axonal fibers of the optic nerve at the retinal connection, ultimately resulting in glaucomatous vision loss.
+Automated glaucoma analysis has been studied using both fundus photography and optical coherence tomography (OCT), reflecting their importance in clinical glaucoma assessment. Fundus photographs provide two-dimensional structural information about the optic disc, optic cup, neuroretinal rim, parapapillary region, and retinal vasculature, whereas OCT provides high-resolution cross-sectional information about retinal layers and structural biomarkers such as RNFL and GCIPL thickness~\cite{kanski10,jayaram2023glaucoma}. These complementary characteristics make both modalities clinically useful for glaucoma screening, diagnosis, and monitoring. However, many automated approaches have historically relied on a single modality, which can limit the ability of the model to exploit both global retinal context and depth-resolved structural information.
 
-All forms of glaucoma share common structural and functional manifestations. Structurally, glaucoma is characterized by thinning of the retinal nerve fiber layer (RNFL) and the ganglion cell with inner plexiform layer (GCIPL), as well as optic disc cupping and neuroretinal rim narrowing. Functionally, it is associated with defects in visual field (VF) sensitivity~\cite{kanski10}.
+Early computer-aided glaucoma detection methods commonly used handcrafted features extracted from fundus images, followed by conventional machine learning classifiers. For example, Histogram of Oriented Gradients (HOG) features combined with artificial neural networks have been explored for glaucoma detection~\cite{singh2022hog}, while other studies investigated texture, intensity, and structural descriptors for distinguishing glaucomatous and healthy eyes~\cite{velpula2024automated,pathan2023automated}. Although these approaches demonstrated the feasibility of automated glaucoma detection, their performance is constrained by the representational capacity of manually designed features and their limited adaptability to complex anatomical variations.
 
-Among the various clinical diagnostic approaches, imaging techniques such as color fundus photography and optical coherence tomography (OCT) have become the most widely used for screening and monitoring glaucoma progression~\cite{jayaram2023glaucoma}.
+Deep learning approaches have substantially improved automated glaucoma analysis by learning task-specific visual representations directly from retinal images. Fundus-based studies have demonstrated strong screening performance using convolutional neural networks and segmentation-guided pipelines~\cite{cho2021deep,shyamalee2022attention}. The REFUGE challenge provided a standardized fundus-image benchmark for optic disc/cup segmentation and glaucoma classification, enabling systematic comparison of automated glaucoma assessment methods~\cite{orlando2020refuge}. Subsequent studies further explored attention-based U-Net architectures, transfer learning, and pretrained CNN backbones for fundus-based optic disc/cup segmentation and glaucoma classification on datasets such as RIM-ONE and ACRIMA~\cite{shyamalee2022glaucoma,diaz2019cnns,shyamalee2022cnn}. These studies highlight the diagnostic value of fundus imaging, but remain limited to two-dimensional surface-level retinal information.
 
-\begin{figure}[!t]
-    \centering
-    \includegraphics[width=\columnwidth]{images/raw-fundus-oct.png}
-    \caption{Sample multimodal inputs from the GAMMA dataset: (left) color fundus photograph and (right) representative OCT B-scan slice.}
-    \label{fig:raw-fundus-oct}
-\end{figure}
+OCT-based approaches provide a complementary direction by capturing structural changes in retinal layers that may be associated with glaucomatous damage. Transfer learning on macular OCT thickness maps has been used for glaucoma detection~\cite{asaoka2019using}, while segmentation-free CNN models trained directly on OCT B-scans have demonstrated strong diagnostic performance and reduced dependence on handcrafted or segmentation-derived measurements~\cite{thompson2020assessment}. These studies show that OCT can provide discriminative structural information for glaucoma analysis, but OCT-only models may miss contextual information available in fundus photographs, such as optic disc appearance and retinal vascular structure.
 
-As illustrated in Figure~\ref{fig:raw-fundus-oct}, fundus images provide a two-dimensional view of the retina, optic disc, and vasculature, enabling clinicians to identify structural abnormalities such as optic disc cupping. In contrast, OCT offers high-resolution cross-sectional views of the retinal layers, allowing precise quantification of RNFL and GCIPL thickness—key biomarkers of glaucomatous damage~\cite{kanski10}. Therefore, integrating information from both imaging modalities can offer a more comprehensive assessment of structural and functional changes in glaucoma, thereby improving diagnostic accuracy.
+\subsection{Multimodal learning for glaucoma assessment}
+\label{subsec:multimodal_glaucoma_learning}
 
-\subsection{RELATED STUDIES}
-\label{subsec24}
+Multimodal learning has gained increasing attention in glaucoma analysis because different ophthalmic examinations provide complementary diagnostic evidence. In clinical practice, fundus photography and OCT are often interpreted together, and additional measurements such as visual field testing or clinical variables may further support diagnosis and monitoring. Motivated by this, several studies have investigated multimodal frameworks that combine imaging and non-imaging sources. For example, joint modelling of macular OCT, color fundus photographs, and clinical variables has been used for automated glaucoma detection with decision-level fusion~\cite{mehta2021automated}. Other studies have explored multimodal combinations involving OCT-derived measurements, visual field information, and clinical data for glaucoma detection or progression assessment~\cite{luo2023harvard,hwang2025utilization,lim2022use}. These works demonstrate the value of multimodal information, while also highlighting practical challenges such as modality heterogeneity, missing data, and generalization across clinical cohorts.
 
-Existing research on automated glaucoma analysis broadly follows three methodological directions: single-modality fundus-based approaches, single-modality OCT-based approaches, and multimodal fusion frameworks that integrate complementary structural and contextual information. Within these categories, studies have primarily focused on either glaucoma screening or, more recently, glaucoma severity grading. This section summarizes representative works to contextualize the proposed framework and highlight remaining limitations.
+The GAMMA challenge established an important benchmark for multimodal glaucoma grading using paired fundus photographs and three-dimensional OCT volumes~\cite{wu2023gamma}. The task involves classifying samples into ordinal glaucoma severity categories, thereby encouraging methods that integrate two-dimensional fundus information with volumetric OCT evidence. Baseline and challenge-related methods commonly used dual-branch architectures, modality-specific feature extraction, and feature- or decision-level fusion strategies~\cite{wu2023gamma}. These studies confirmed that combining fundus and OCT information can improve glaucoma grading compared with single-modality settings, but many approaches relied on fixed fusion designs and focused primarily on multiclass grading.
 
-Early automated glaucoma detection studies relied on handcrafted feature extraction combined with classical machine learning classifiers. Typical approaches extracted structural, textural, or gradient-based descriptors from fundus images and employed classifiers such as artificial neural networks, support vector machines, or ensemble models. For example, Histogram of Oriented Gradients (HOG) features combined with artificial neural networks were explored for glaucoma detection~\cite{singh2022hog}, while other studies investigated texture and intensity-based descriptors for distinguishing glaucomatous from healthy eyes~\cite{velpula2024automated,pathan2023automated}. Although these approaches demonstrated the feasibility of automated glaucoma detection, their performance was limited by the dependence on manually designed features that cannot fully capture complex retinal structures.
+Recent GAMMA-focused studies have proposed more specialized multimodal architectures. GeCoM-Net introduced geometric correspondence-based multimodal learning to better align color fundus photography and OCT information for ophthalmic image analysis~\cite{wang2024geometric}. MOD-Net proposed a dual-branch hybrid-attention framework for multimodal glaucoma grading~\cite{wang2025dual}. COROLLA employed multimodal fusion with supervised contrastive learning for glaucoma grading, using OCT-derived retinal thickness information together with fundus images~\cite{cai2022corolla}. M2F3 further investigated multimodal feature fusion with transformer-based components for glaucoma grading~\cite{zhao2025enhancing}. These studies demonstrate the progress of multimodal glaucoma grading, but they generally evaluate a specific fusion formulation rather than comparing multiple fusion depths under the same preprocessing, optimization, and evaluation protocol.
 
-Fundus-only benchmarks first established the feasibility of deep learning for glaucoma screening\cite{shyamalee2024automated}. The REFUGE Challenge introduced a large-scale dataset comprising 1,200 clinically verified color fundus photographs with expert optic disc and cup annotations, enabling standardized evaluation of both segmentation and classification tasks \cite{orlando2020refuge}. Leading approaches employed U-Net variants and Mask R-CNN for segmentation, followed by CNN-based classification using full-frame images, optic nerve head crops, or vertical cup-to-disc ratio features. The best-performing system achieved an AUC of 0.9885, exceeding the performance of experienced glaucoma specialists.
+\subsection{Fusion strategies for fundus--OCT glaucoma analysis}
+\label{subsec:fusion_strategies}
 
-Subsequent studies explored segmentation-guided pipelines to further enhance screening performance. Attention-based U-Net architectures combined with transfer learning demonstrated strong optic disc and cup segmentation accuracy, followed by CNN-based glaucoma classification on public datasets such as RIM-ONE and ACRIMA \cite{shyamalee2022glaucoma}. Systematic evaluation of ImageNet-pretrained CNNs across multiple datasets reported a best AUC of 0.9605 using Xception with cross-validation, highlighting the generalization benefits of transfer learning \cite{diaz2019cnns}. Further refinements incorporating preprocessing strategies and fine-tuned CNNs achieved AUC values approaching 0.99 on ACRIMA and 0.98 on RIM-ONE \cite{shyamalee2022cnn}.
+Fusion strategy is a central design choice in multimodal biomedical image analysis. In general, multimodal fusion can be performed at the input level, feature level, or decision level. Input-level or early fusion combines modality information before feature extraction, allowing a shared encoder to learn joint representations from the beginning. Feature-level or deep fusion preserves modality-specific encoders and integrates learned representations at an intermediate stage. Decision-level or late fusion combines separate modality-specific predictions, allowing each modality to contribute independently to the final decision. Each approach has different advantages and limitations: early fusion can promote shared spatial learning but may be sensitive to modality mismatch; deep fusion can balance modality-specific representation learning with cross-modal interaction; and late fusion is modular and robust but may restrict interaction between modalities.
 
-Parallel advances focused on OCT-only pipelines, motivated by the modality's ability to capture early structural changes in retinal layers. Transfer learning applied to macular OCT thickness maps achieved an AROC of 93.7\%, outperforming traditional machine learning classifiers \cite{asaoka2019using}. Segmentation-free ResNet-based models trained directly on peripapillary OCT B-scans further achieved an AUC of 0.96 and improved sensitivity compared to global RNFL thickness measures, particularly for early-stage glaucoma \cite{thompson2020assessment}. These studies demonstrate the diagnostic value of OCT while avoiding error-prone segmentation stages.
+Generic image-fusion methods provide methodological context for multimodal image integration. DeepFuse proposed a deep learning approach for image fusion, while U2Fusion introduced a unified unsupervised image-fusion framework for preserving complementary information from source images~\cite{ram2017deepfuse,xu2020u2fusion}. More recent medical image-fusion methods, such as ECFusion, incorporate edge enhancement and cross-scale transformer mechanisms to preserve structural detail and contextual information~\cite{luo2025novel}. However, these methods are primarily designed for fused-image generation or visual information preservation, rather than direct supervised glaucoma screening or grading. Applying such methods to fundus--OCT glaucoma analysis would require an additional downstream classifier, making the final diagnostic performance dependent on both the image-fusion stage and the classification model.
 
-More recently, multimodal approaches have emerged to integrate complementary anatomical, functional, and clinical cues. Joint modeling of macular OCT, fundus images, and clinical variables using modality-specific deep networks and decision-level fusion achieved an AUC of 0.967, outperforming expert ophthalmologists \cite{mehta2021automated}. Semi-supervised frameworks combining OCT-derived RNFL maps with visual field data demonstrated improved progression detection under limited labeling conditions \cite{luo2023harvard}. Additional multimodal studies incorporating fundus images, OCT scans, and visual field measurements further highlighted performance gains, while also revealing challenges related to generalization across heterogeneous clinical cohorts \cite{hwang2025utilization,lim2022use}.
+In contrast, the present study focuses on supervised diagnostic multimodal fusion for paired fundus and OCT images. The proposed framework systematically evaluates Early Fusion, Deep Fusion, and Late Fusion within a common transformer-based pipeline. This design enables the effect of fusion depth to be examined under consistent preprocessing, training, and evaluation settings. Compared with prior studies that mainly focus on a single task or a fixed fusion formulation, this work jointly considers binary glaucoma screening and three-class glaucoma grading, while also incorporating OCT multiple-instance learning, cross-validation, calibration analysis, bootstrap uncertainty estimation, and explainability analysis.
 
-Beyond glaucoma-specific multimodal modelling, generic image-fusion methods provide useful methodological context for understanding fusion design. DeepFuse introduced an unsupervised deep learning framework for multi-exposure image fusion, while U2Fusion proposed a unified unsupervised network for multi-modal, multi-exposure, and multi-focus fusion by preserving complementary information from source images without requiring ground-truth fused targets~\cite{ram2017deepfuse,xu2020u2fusion}. More recent multimodal medical image fusion methods, such as ECFusion, further incorporate edge enhancement and cross-scale transformer mechanisms to preserve structural detail and multi-scale contextual information~\cite{luo2025novel}. However, these frameworks are not directly equivalent to the supervised fundus-OCT glaucoma classification problem considered in this study, because their primary objective is fused-image reconstruction or visual information preservation rather than diagnostic prediction. Applying such methods to GAMMA would require an additional downstream glaucoma classifier, making performance dependent on both the image-fusion stage and the classifier. Therefore, generic image-fusion frameworks are discussed here as methodological context, whereas the empirical comparison in this study focuses on diagnostic multimodal models trained under the same paired fundus-OCT classification protocol.
-
-The GAMMA Challenge established a standardized benchmark for multimodal glaucoma grading using paired fundus photographs and 3D OCT volumes, defining three ordinal classes corresponding to normal, early, and progressive glaucoma \cite{wu2023gamma}. Most challenge submissions employed dual-branch CNN-based feature extractors with embedding-level fusion or ordinal ensemble strategies. Although top-performing methods achieved Cohen’s kappa scores exceeding 0.85, fusion mechanisms were generally shallow, reflecting the difficulty of aligning heterogeneous 2D and 3D representations. To address this limitation, GeCoM-Net explicitly modeled geometric correspondence between fundus images and OCT volumes using attention-guided alignment, achieving a kappa score of 0.884 on the GAMMA dataset \cite{wang2024geometric}. Similarly, MOD-Net introduced a dual-branch hybrid-attention architecture leveraging frequency-domain and multi-scale attention, reporting an accuracy of 0.75 and weighted F1-score of 0.74 on GAMMA \cite{wang2025dual}.
-
-More recent GAMMA-focused studies advanced ordinal-aware and task-specific fusion strategies. COROLLA proposed an ordinal regression framework that explicitly enforces inter-class ordering constraints, achieving 0.90 accuracy and 0.855 Cohen’s kappa on the GAMMA dataset \cite{cai2022corolla}. M2F3 introduced a multi-stage multimodal fusion design with complex fusion mechanisms, reporting strong grading performance with 0.94 accuracy and 0.9015 Cohen’s kappa \cite{zhao2025enhancing}. While these approaches demonstrate the effectiveness of task-specific designs, they typically rely on a single fusion paradigm or fixed architectural formulation.
-
-In contrast, the present work systematically investigates Early, Deep, and Late Fusion strategies within a unified transformer-centric multimodal framework operating directly on paired fundus photographs and 3D OCT volumes. Unlike prior CNN-centric approaches, the proposed framework emphasizes task-aligned architectural variants, deeper cross-modal interaction, and explainability-driven analysis, enabling consistent evaluation across both glaucoma screening and glaucoma grading under identical experimental conditions.
-
-A comparative summary of representative studies and their reported performance is provided in Table~\ref{tab:comparison}.
+A compact comparison of representative studies is provided in Table~\ref{tab:comparison}. The table is intended to position the proposed study relative to prior fundus-only, OCT-only, and multimodal glaucoma analysis methods, while emphasizing the specific gap addressed in this work: controlled comparison of fusion depth for paired fundus--OCT glaucoma screening and grading.
 
 \begin{table*}[!t]
     \centering
     \caption{Comparison of representative studies in automated glaucoma screening and grading}
     \label{tab:comparison}
     \scriptsize
-    \setlength{\tabcolsep}{6pt}
+    \setlength{\tabcolsep}{5pt}
     \resizebox{\textwidth}{!}{%
-        \begin{tabular}{p{0.08\textwidth} p{0.16\textwidth} p{0.26\textwidth} p{0.22\textwidth} p{0.28\textwidth}}
+        \begin{tabular}{p{0.13\textwidth} p{0.16\textwidth} p{0.24\textwidth} p{0.20\textwidth} p{0.23\textwidth}}
             \hline
-            \textbf{Study}                              &
-            \textbf{Dataset}                            &
-            \textbf{Techniques / Models}                &
-            \textbf{Key Limitations}                    &
-            \textbf{Reported Performance}                 \\
+            \textbf{Study} &
+            \textbf{Modality / Dataset} &
+            \textbf{Main approach} &
+            \textbf{Task} &
+            \textbf{Main limitation relevant to this work} \\
             \hline
-            \cite{orlando2020refuge}                    &
-            REFUGE (1200 images)                        &
-            U-Net, Mask R-CNN; CNN-based classification &
-            Fundus-only; segmentation-dependent         &
-            AUC: 0.9885; OD Dice: 0.96; OC Dice: 0.88     \\
 
-            \cite{shyamalee2022glaucoma}                &
-            RIM-ONE, ACRIMA                             &
-            Attention U-Net + CNN                       &
-            Fundus-only; segmentation overhead          &
-            Seg. Acc: 99.58\%; Cls. Acc: 98.79\%          \\
+            \cite{orlando2020refuge} &
+            Fundus / REFUGE &
+            Standardized benchmark with optic disc/cup segmentation and glaucoma classification methods &
+            Fundus-based glaucoma assessment &
+            Fundus-only benchmark; does not use OCT information \\
 
-            \cite{diaz2019cnns}                         &
-            Multi-dataset (1707 images)                 &
-            Pretrained CNNs (Xception, ResNet)          &
-            Performance drop on unseen data             &
-            AUC: 0.9605; Sens: 0.9346                     \\
+            \cite{shyamalee2022glaucoma,diaz2019cnns,shyamalee2022cnn} &
+            Fundus / RIM-ONE, ACRIMA and related datasets &
+            Segmentation-guided and transfer-learning-based CNN pipelines &
+            Glaucoma screening / classification &
+            Fundus-only analysis; limited use of depth-resolved retinal structure \\
 
-            \cite{shyamalee2022cnn}                     &
-            ACRIMA, RIM-ONE                             &
-            CNNs with preprocessing                     &
-            Fundus-only                                 &
-            ACRIMA AUC: 0.99; RIM-ONE AUC: 0.98           \\
+            \cite{asaoka2019using,thompson2020assessment} &
+            OCT-based datasets &
+            Transfer learning on OCT maps and segmentation-free CNN analysis of OCT B-scans &
+            OCT-based glaucoma detection &
+            OCT-only analysis; does not exploit fundus contextual information \\
 
-            \cite{asaoka2019using}                      &
-            Topcon OCT (178 images)                     &
-            CNN on RNFL/GCC maps                        &
-            OCT-only                                    &
-            AROC: 93.7\%                                  \\
+            \cite{mehta2021automated} &
+            Fundus, OCT, and clinical variables &
+            Modality-specific modelling with decision-level fusion &
+            Automated glaucoma detection &
+            Uses multiple information sources, but does not provide controlled comparison of fusion depths \\
 
-            \cite{thompson2020assessment}               &
-            SD-OCT (20,806 B-scans)                     &
-            Segmentation-free ResNet34                  &
-            OCT-only                                    &
-            AUC: 0.96; Sens: 81\%@95\% Spec               \\
+            \cite{luo2023harvard,hwang2025utilization,lim2022use} &
+            OCT, visual field, fundus, and/or clinical information &
+            Multimodal learning for glaucoma detection or progression-related assessment &
+            Detection / progression analysis &
+            Different modality combinations and objectives; not focused on paired fundus--OCT fusion-depth comparison \\
 
-            \cite{mehta2021automated}                   &
-            Macular OCT + CFP                           &
-            CNNs + gradient-boosted fusion              &
-            Requires clinical metadata                  &
-            AUC: 0.967                                    \\
+            \cite{wu2023gamma} &
+            Fundus and 3D OCT / GAMMA &
+            Multimodal glaucoma grading benchmark with paired fundus and OCT data &
+            Three-class glaucoma grading &
+            Primarily grading-focused; challenge methods generally use fixed fusion formulations \\
 
-            \cite{luo2023harvard}                       &
-            Harvard-GDP (1000 patients)                 &
-            Semi-supervised RL (OCT + VF)               &
-            Depends on VF data                          &
-            Prog. AUC: 0.75                               \\
+            \cite{wang2024geometric} &
+            Fundus and OCT / ophthalmic multimodal datasets &
+            Geometric correspondence-based multimodal learning for fundus--OCT fusion &
+            Ophthalmic image analysis including glaucoma &
+            Emphasizes geometric correspondence, but does not compare early, deep, and late fusion under one protocol \\
 
-            \cite{wu2023gamma}                          &
-            GAMMA (300 pairs)                           &
-            Dual-branch CNN fusion                      &
-            Shallow fusion design                       &
-            QWK: $>$0.85                                  \\
+            \cite{cai2022corolla,zhao2025enhancing} &
+            Fundus and OCT / GAMMA &
+            Task-specific multimodal fusion frameworks for glaucoma grading &
+            Three-class glaucoma grading &
+            Strong task-specific designs, but mainly grading-focused and based on fixed fusion strategies \\
 
-            \cite{wang2024geometric}                    &
-            GAMMA                                       &
-            GeCoM-Net (geometric attention)             &
-            High complexity; CNN-based                  &
-            QWK: 0.884                                    \\
-
-            \cite{wang2025dual}                         &
-            GAMMA                                       &
-            MOD-Net hybrid attention                    &
-            Limited ordinal modeling                    &
-            Acc: 0.75; F1$_w$: 0.74                       \\
-
-            \cite{cai2022corolla}                       &
-            GAMMA                                       &
-            COROLLA ordinal regression                  &
-            Fixed architecture                          &
-            Acc: 0.90; Kappa: 0.855                       \\
-
-            \cite{zhao2025enhancing}                    &
-            GAMMA                                       &
-            M2F3 multi-stage fusion                     &
-            Single fusion paradigm                      &
-            Acc: 0.94; Kappa: 0.9015                      \\
+            \textbf{This study} &
+            Fundus and 3D OCT / GAMMA &
+            Transformer-based Early, Deep, and Late Fusion with OCT multiple-instance learning &
+            Binary screening and three-class grading &
+            Systematically evaluates fusion depth under a unified preprocessing, training, robustness, calibration, and explainability protocol \\
             \hline
         \end{tabular}
     }
 \end{table*}
 
-Overall, prior work highlights four consistent gaps. First, many glaucoma AI studies rely on a single modality and therefore underuse complementary retinal information from fundus photography and OCT. Second, existing multimodal glaucoma studies typically employ a fixed fusion design, limiting insight into how the timing of multimodal interaction affects diagnostic behaviour. Third, most GAMMA-based studies focus primarily on multiclass grading, whereas clinical deployment also requires referral-oriented binary screening. Fourth, paired fundus-OCT datasets remain small; therefore, multimodal models must be explicitly designed for data-efficient learning rather than assuming large-scale training conditions. These limitations motivate the present study, which systematically evaluates Early, Deep, and Late Fusion strategies within a unified transformer-based multimodal pipeline for both glaucoma screening and glaucoma grading, while incorporating OCT-MIL, cross-validation, calibration, bootstrap uncertainty estimation, and explainability analysis.
+Overall, prior work reveals four important gaps. First, many glaucoma AI studies rely on either fundus photographs or OCT images alone, which may underuse complementary retinal information. Second, existing multimodal glaucoma studies commonly adopt a fixed fusion design, limiting insight into how the timing of multimodal interaction affects diagnostic behaviour. Third, most GAMMA-based studies focus primarily on multiclass grading, whereas potential clinical use also requires referral-oriented binary screening. Fourth, paired fundus--OCT datasets remain relatively small, making data-efficient volumetric OCT representation and robust evaluation important. These limitations motivate the present study, which systematically evaluates transformer-based Early, Deep, and Late Fusion strategies for both glaucoma screening and grading using paired fundus and OCT images.
 
 \section{METHODOLOGY}
 \label{sec3}
